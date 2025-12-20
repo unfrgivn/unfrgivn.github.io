@@ -10,18 +10,18 @@ const ASCII_BANNER = `
 `.trim();
 
 const FASTFETCH_DATA = [
-  { label: 'OS', value: 'Human 1.0 (Texas Build)' },
+  { label: 'OS', value: 'Human v2024.12.19' },
   { label: 'Uptime', value: '15 years in production' },
   { label: 'Shell', value: 'zsh + mass-customized dotfiles' },
   { label: 'DE', value: 'Remote-First (async preferred)' },
   { label: 'WM', value: 'Multiple monitors + standing desk' },
-  { label: 'Terminal', value: 'Neovim btw' },
+  { label: 'Terminal', value: 'Ghostty' },
   { label: 'CPU', value: 'Caffeinated (8 cores, 0 blockers)' },
   { label: 'GPU', value: 'Whiteboard-Accelerated™' },
   { label: 'Memory', value: '∞ Stack Overflow tabs' },
   { label: 'Disk', value: '500+ repos cloned' },
   { label: 'Network', value: 'Low latency, high bandwidth' },
-  { label: 'Battery', value: '████████░░ Recharges with coffee' },
+  { label: 'Coords', value: '44.952667, -93.305687' },
 ];
 
 const SKILLS = [
