@@ -58,6 +58,17 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
   const [openFileId, setOpenFileId] = useState<string>('');
   const [cursorPos, setCursorPos] = useState({ line: 1, col: 1 });
   
+  const [showTechFilter, setShowTechFilter] = useState(false);
+  const [activeTechFilters, setActiveTechFilters] = useState<string[]>([]);
+
+  const allTechTags = useMemo(() => {
+    const tags = new Set<string>();
+    projects.forEach(p => {
+      p.data?.tech?.forEach((t: string) => tags.add(t));
+    });
+    return Array.from(tags).sort();
+  }, [projects]);
+  
   useEffect(() => {
     const tree: FileNode[] = [
       {
@@ -243,16 +254,47 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
   };
 
   const getFilteredNodes = (nodes: FileNode[]): FileNode[] => {
-    if (!searchQuery) return nodes;
+    if (!searchQuery && activeTechFilters.length === 0) return nodes;
+    
     return nodes.reduce<FileNode[]>((acc, node) => {
-      if (node.name.toLowerCase().includes(searchQuery.toLowerCase()) || (node.children && hasMatch(node.children, searchQuery))) {
-        const newNode = { ...node };
-        if (newNode.children) {
-          newNode.children = getFilteredNodes(newNode.children);
-          newNode.isOpen = true; 
+      let matchesTech = true;
+      if (activeTechFilters.length > 0 && node.type === 'file') {
+        if (node.content?.data?.tech) {
+          matchesTech = node.content.data.tech.some((t: string) => activeTechFilters.includes(t));
         }
-        acc.push(newNode);
       }
+
+      let matchesSearch = true;
+      if (searchQuery) {
+        matchesSearch = node.name.toLowerCase().includes(searchQuery.toLowerCase());
+      }
+
+      let filteredChildren: FileNode[] = [];
+      let childrenMatch = false;
+      
+      if (node.children) {
+        filteredChildren = getFilteredNodes(node.children);
+        if (filteredChildren.length > 0) {
+          childrenMatch = true;
+        }
+      }
+
+      if (node.type === 'folder') {
+        const shouldShowFolder = activeTechFilters.length > 0 
+          ? childrenMatch 
+          : (childrenMatch || matchesSearch);
+
+        if (shouldShowFolder) {
+          const newNode = { ...node, children: filteredChildren };
+          newNode.isOpen = true; 
+          acc.push(newNode);
+        }
+      } else {
+        if (matchesTech && matchesSearch) {
+          acc.push(node);
+        }
+      }
+      
       return acc;
     }, []);
   };
@@ -273,6 +315,11 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
 
     const visibleNodes = getVisibleNodes(filteredTree);
     const currentIndex = visibleNodes.findIndex(n => n.id === selectedFileId);
+
+    if (key === 't' && mode === 'NORMAL' && activePane === 'tree') {
+      setShowTechFilter(prev => !prev);
+      return;
+    }
 
     if (key === 'j' || key === 'ArrowDown') {
       if (currentIndex < visibleNodes.length - 1) {
@@ -458,6 +505,42 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
             <div className="px-3 py-2 text-xs font-bold text-ctp-blue uppercase tracking-wider border-b border-ctp-surface1 mb-1">
               File Explorer
             </div>
+            {showTechFilter && (
+              <div className="px-2 py-2 border-b border-ctp-surface1 bg-ctp-surface0/30">
+                <div className="text-xs text-ctp-subtext0 mb-2 flex items-center justify-between">
+                  <span>Filter by Tech</span>
+                  {activeTechFilters.length > 0 && (
+                    <button 
+                      onClick={() => setActiveTechFilters([])}
+                      className="text-ctp-red hover:underline"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {allTechTags.map(tag => (
+                    <button
+                      key={tag}
+                      onClick={() => {
+                        setActiveTechFilters(prev => 
+                          prev.includes(tag) 
+                            ? prev.filter(t => t !== tag)
+                            : [...prev, tag]
+                        );
+                      }}
+                      className={`px-1.5 py-0.5 text-xs rounded transition-colors ${
+                        activeTechFilters.includes(tag)
+                          ? 'bg-ctp-blue text-ctp-base'
+                          : 'bg-ctp-surface1 text-ctp-subtext0 hover:bg-ctp-surface2'
+                      }`}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="flex-1 overflow-y-auto py-1 scrollbar-hide">
               {renderTreeNodes(getFilteredNodes(fileTree))}
             </div>
@@ -572,6 +655,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
                   <p><span className="bg-ctp-surface0 px-1 rounded">j</span> <span className="bg-ctp-surface0 px-1 rounded">k</span> to navigate</p>
                   <p><span className="bg-ctp-surface0 px-1 rounded">Enter</span> to open</p>
                   <p><span className="bg-ctp-surface0 px-1 rounded">Ctrl+h/l</span> to switch pane</p>
+                  <p><span className="bg-ctp-surface0 px-1 rounded">t</span> toggle tech filter</p>
                 </div>
               </div>
             )}
@@ -590,9 +674,14 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
             {mode}
           </div>
 
-          <div className="px-3 flex items-center bg-ctp-surface1 text-ctp-subtext1 gap-2">
-            <span> main</span>
-          </div>
+            <div className="px-3 flex items-center bg-ctp-surface1 text-ctp-subtext1 gap-2">
+              <span> main</span>
+              {activeTechFilters.length > 0 && (
+                <div className="px-2 flex items-center bg-ctp-peach text-ctp-base text-xs rounded-sm">
+                  🔍 {activeTechFilters.length} filter{activeTechFilters.length > 1 ? 's' : ''}
+                </div>
+              )}
+            </div>
           
           {mode === 'COMMAND' && !isSearching && (
              <div className="px-3 flex items-center flex-1 text-ctp-text bg-ctp-surface0">
