@@ -44,7 +44,7 @@ export default function ThemeSwitcher() {
     <div className="relative inline-block" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1 px-1.5 py-0.5 bg-ctp-surface0 hover:bg-ctp-surface1 border border-ctp-surface1 rounded text-[10px] text-ctp-text transition-colors cursor-pointer"
+        className="flex items-center gap-1.5 px-1.5 py-0.5 bg-ctp-surface0 hover:bg-ctp-surface1 border border-ctp-surface1 rounded text-[10px] text-ctp-text transition-colors cursor-pointer"
         title="Switch theme"
         aria-label="Switch theme"
         aria-expanded={isOpen}
