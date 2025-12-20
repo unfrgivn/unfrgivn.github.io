@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ThemeSwitcher from '../react/ThemeSwitcher';
 
 const ASCII_BANNER = `
  ██████╗ ██████╗ ███████╗███╗   ██╗    ██████╗ ██████╗  █████╗ ██████╗ 
@@ -185,6 +186,10 @@ export default function TerminalHome() {
                         <span className="text-xs opacity-75">]</span>
                       </a>
                     ))}
+                  </div>
+
+                  <div className="mt-2 pt-2 border-t border-ctp-surface1">
+                    <ThemeSwitcher />
                   </div>
                 </div>
               </div>
