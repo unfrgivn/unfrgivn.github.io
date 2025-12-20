@@ -130,7 +130,10 @@ export default function TerminalHome() {
             </div>
             <span className="ml-3 font-bold opacity-75 font-mono">zsh — 80x24</span>
           </div>
-          <div className="opacity-50 text-[10px]">/usr/bin/zsh</div>
+          <div className="flex items-center gap-3">
+            <ThemeSwitcher />
+            <div className="opacity-50 text-[10px]">/usr/bin/zsh</div>
+          </div>
         </div>
 
         <div className="flex-1 overflow-hidden p-4 md:p-6 font-mono text-sm md:text-base">
@@ -188,9 +191,7 @@ export default function TerminalHome() {
                     ))}
                   </div>
 
-                  <div className="mt-2 pt-2 border-t border-ctp-surface1">
-                    <ThemeSwitcher />
-                  </div>
+                  
                 </div>
               </div>
 
