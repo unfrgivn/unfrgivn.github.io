@@ -54,7 +54,7 @@ export default function ThemeSwitcher() {
       </button>
       
       {isOpen && (
-        <div className="absolute right-0 bottom-full mb-2 w-48 bg-ctp-base border border-ctp-surface1 rounded-lg shadow-xl z-50 overflow-hidden">
+        <div className="absolute right-0 top-full mt-2 w-48 bg-ctp-base border border-ctp-surface1 rounded-lg shadow-xl z-50 overflow-hidden">
           <div className="py-1">
             {THEMES.map((t) => (
               <button
