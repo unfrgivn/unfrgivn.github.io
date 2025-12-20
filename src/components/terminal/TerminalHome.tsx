@@ -17,8 +17,19 @@ const getOSVersion = () => {
   return `Human v${year}.${month}.${day}`;
 };
 
+const getUptime = () => {
+  const start = new Date('2000-06-01T00:00:00');
+  const now = new Date();
+  const diff = now.getTime() - start.getTime();
+  
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  
+  return `${days} days, ${hours} hours, ${mins} mins`;
+};
+
 const FASTFETCH_DATA = [
-  { label: 'Uptime', value: '15 years in production' },
   { label: 'Shell', value: 'zsh + mass-customized dotfiles' },
   { label: 'DE', value: 'macOS' },
   { label: 'Terminal', value: 'Tmux 3.6' },
@@ -117,6 +128,10 @@ export default function TerminalHome() {
                 <div className="flex gap-2">
                   <span className="text-ctp-blue min-w-[100px]">OS</span>
                   <span className="text-ctp-text opacity-90">{getOSVersion()}</span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-ctp-blue min-w-[100px]">Uptime</span>
+                  <span className="text-ctp-text opacity-90">{getUptime()}</span>
                 </div>
                 {FASTFETCH_DATA.map((item) => (
                   <div key={item.label} className="flex gap-2">
