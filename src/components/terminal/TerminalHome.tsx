@@ -38,7 +38,9 @@ const FASTFETCH_DATA = [
   { label: 'Memory', value: 'RAM: 32GB / Chrome: 31.9GB' },
   { label: 'Disk', value: '128GB of PDFs "to read later"' },
   { label: 'Network', value: 'Low latency, high bandwidth' },
-  { label: 'Coords', value: '44.952667, -93.305687' },
+  { label: 'Location', value: 'Minneapolis, MN' },
+  { label: 'Coords', value: '44.95, -93.31' },
+  { label: 'Education', value: 'Rensselaer Polytechnic Institute' },
   { label: 'Locale', value: 'en_US.UTF-8' },
 ];
 
@@ -49,6 +51,15 @@ const SKILLS = [
   { name: 'DevOps/K8s', value: 85, color: 'text-ctp-peach' },
   { name: 'Team Leadership', value: 90, color: 'text-ctp-yellow' },
   { name: 'Communication', value: 95, color: 'text-ctp-teal' },
+];
+
+const CERTIFICATIONS = [
+  { name: 'AWS Solutions Architect', color: 'text-ctp-peach' },
+  { name: 'AWS Cloud Practitioner', color: 'text-ctp-peach' },
+  { name: 'Azure Administrator', color: 'text-ctp-blue' },
+  { name: 'Azure Fundamentals', color: 'text-ctp-blue' },
+  { name: 'Terraform Associate', color: 'text-ctp-mauve' },
+  { name: 'SnowPro Core', color: 'text-ctp-teal' },
 ];
 
 const PROCESSES = [
@@ -239,6 +250,15 @@ export default function TerminalHome() {
                         style={{ width: `${skill.value}%` }}
                       ></div>
                     </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-2 border-t border-ctp-surface1 pt-3 mt-2">
+                {CERTIFICATIONS.map((cert) => (
+                  <div key={cert.name} className={`text-[10px] px-2 py-1 rounded bg-ctp-surface0/40 ${cert.color} flex items-center gap-1.5 border border-ctp-surface0`}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-current opacity-75"></span>
+                    {cert.name}
                   </div>
                 ))}
               </div>
