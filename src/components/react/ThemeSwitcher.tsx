@@ -44,12 +44,12 @@ export default function ThemeSwitcher() {
     <div className="relative inline-block" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 bg-ctp-surface0 hover:bg-ctp-surface1 border border-ctp-surface1 rounded text-sm text-ctp-text transition-colors cursor-pointer"
+        className="flex items-center gap-1 px-1.5 py-0.5 bg-ctp-surface0 hover:bg-ctp-surface1 border border-ctp-surface1 rounded text-[10px] text-ctp-text transition-colors cursor-pointer"
         title="Switch theme"
         aria-label="Switch theme"
         aria-expanded={isOpen}
       >
-        <span>{currentTheme.icon}</span>
+        <span className="text-xs">{currentTheme.icon}</span>
         <span className="hidden sm:inline">{currentTheme.name}</span>
       </button>
       
