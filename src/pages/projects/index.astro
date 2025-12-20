@@ -1,35 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import ProjectFilter from '../../components/react/ProjectFilter';
+import NvimLayout from '../../components/terminal/NvimLayout';
 
 const projects = await getCollection('projects');
-type Project = CollectionEntry<'projects'>;
+const sortedProjects = projects.sort((a, b) => a.data.priority - b.data.priority);
 
-// Sort by title for now, or add a 'date' field later
-const sortedProjects = projects.sort((a: Project, b: Project) => a.data.title.localeCompare(b.data.title));
-
-const allTags = [...new Set(projects.flatMap((p: Project) => p.data.tech))].sort();
-const allDomains = [...new Set(projects.flatMap((p: Project) => p.data.domains || []))].sort();
-
-const projectsData = sortedProjects.map((p: Project) => ({
+const projectsData = sortedProjects.map(p => ({
   slug: p.slug,
-  data: p.data
+  name: p.slug,
+  data: p.data,
+  body: p.body
 }));
 ---
 
-<Layout title="All Projects | Brad Ash" description="Browse all software engineering projects.">
-  <div class="pt-32 pb-16">
-    <div class="container">
-      <h1 class="mb-8 text-4xl font-bold md:text-5xl">All Projects</h1>
-      
-      <ProjectFilter 
-        projects={projectsData} 
-        allTags={allTags} 
-        allDomains={allDomains} 
-        client:load 
-      />
-    </div>
-  </div>
+<Layout title="Projects | Brad Ash" description="Interactive terminal project explorer." fullscreen={true}>
+  <NvimLayout projects={projectsData} client:only="react" />
 </Layout>
+
+<style is:global>
+  body {
+    overflow: hidden;
+  }
+</style>
