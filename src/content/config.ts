@@ -9,6 +9,7 @@ const projectsCollection = defineCollection({
     role: z.string().optional(),
     year: z.string().optional(),
     featured: z.boolean().default(false),
+    priority: z.number().default(0),
     summary: z.string().optional(),
     highlights: z.array(z.string()).optional(),
     domains: z.array(z.string()).default([]),

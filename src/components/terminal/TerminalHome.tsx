@@ -62,6 +62,13 @@ const CERTIFICATIONS = [
   { name: 'SnowPro Core', color: 'text-ctp-teal' },
 ];
 
+const SOCIAL_LINKS = [
+  { name: 'GitHub', url: 'https://github.com/unfrgivn', icon: '󰊤', color: 'text-ctp-text' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/bradash', icon: '󰌻', color: 'text-ctp-blue' },
+  { name: 'Email', url: 'mailto:brad@yoursite.com', icon: '󰇮', color: 'text-ctp-green' },
+  { name: 'Resume', url: '/brad_ash_resume.pdf', icon: '󰈙', color: 'text-ctp-peach' },
+];
+
 const PROCESSES = [
   { pid: 8921, user: 'brad', pri: -20, state: 'S', time: '4y1m', command: 'Architected event-driven system handling $2B+ transactions', slug: 'subscription-api' },
   { pid: 1192, user: 'brad', pri: -15, state: 'S', time: '2y8m', command: 'Led migration to microservices architecture', slug: 'metamorphosisjs' },
@@ -160,6 +167,24 @@ export default function TerminalHome() {
                     <div className="w-8 h-4 bg-ctp-blue rounded-sm"></div>
                     <div className="w-8 h-4 bg-ctp-mauve rounded-sm"></div>
                     <div className="w-8 h-4 bg-ctp-teal rounded-sm"></div>
+                  </div>
+
+                  <div className="flex gap-3 mt-2 pt-2 border-t border-ctp-surface1">
+                    {SOCIAL_LINKS.map((link) => (
+                      <a
+                        key={link.name}
+                        href={link.url}
+                        target={link.url.startsWith('http') ? '_blank' : undefined}
+                        rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        download={link.name === 'Resume' ? true : undefined}
+                        className={`${link.color} hover:underline text-sm flex items-center gap-1 transition-colors hover:text-ctp-lavender`}
+                        title={link.name}
+                      >
+                        <span className="text-xs opacity-75">[</span>
+                        {link.name}
+                        <span className="text-xs opacity-75">]</span>
+                      </a>
+                    ))}
                   </div>
                 </div>
               </div>
