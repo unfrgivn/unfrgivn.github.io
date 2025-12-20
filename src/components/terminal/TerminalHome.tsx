@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const ASCII_LOGO = `
-      .
-     / \\
-    /   \\
-   /  |  \\
-  /   |   \\
- /    |    \\
-/_____|_____\\
-      |
-      |
-      |
-`;
+const ASCII_BANNER = `
+ ██████╗ ██████╗ ███████╗███╗   ██╗    ██████╗ ██████╗  █████╗ ██████╗ 
+██╔═══██╗██╔══██╗██╔════╝████╗  ██║    ██╔══██╗██╔══██╗██╔══██╗██╔══██╗
+██║   ██║██████╔╝█████╗  ██╔██╗ ██║    ██████╔╝██████╔╝███████║██║  ██║
+██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║    ██╔══██╗██╔══██╗██╔══██║██║  ██║
+╚██████╔╝██║     ███████╗██║ ╚████║    ██████╔╝██║  ██║██║  ██║██████╔╝
+ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
+`.trim();
 
 const FASTFETCH_DATA = [
   { label: 'User', value: 'Brad Ash' },
@@ -104,19 +100,14 @@ export default function TerminalHome() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 mb-8 md:mb-12">
             
-            <div className="flex flex-col sm:flex-row gap-6 md:gap-8 items-start animate-in fade-in duration-700 slide-in-from-left-4">
-              <div className="hidden sm:block text-ctp-blue font-bold whitespace-pre leading-none select-none opacity-80 pt-2">
-                {ASCII_LOGO}
-              </div>
+            <div className="flex flex-col gap-4 animate-in fade-in duration-700 slide-in-from-left-4">
+              <pre className="text-ctp-blue font-bold text-[6px] sm:text-[8px] md:text-[10px] leading-none select-none overflow-x-auto">
+{ASCII_BANNER}
+              </pre>
               
-              <div className="flex-1 space-y-1">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-ctp-blue font-bold">brad</span>
-                  <span className="text-ctp-text">@</span>
-                  <span className="text-ctp-mauve font-bold">portfolio</span>
-                </div>
-                <div className="h-px bg-ctp-surface1 mb-3 w-full"></div>
-                
+              <div className="h-px bg-ctp-surface1 w-full"></div>
+              
+              <div className="space-y-1">
                 {FASTFETCH_DATA.map((item) => (
                   <div key={item.label} className="flex gap-2">
                     <span className="text-ctp-blue min-w-[100px]">{item.label}</span>
