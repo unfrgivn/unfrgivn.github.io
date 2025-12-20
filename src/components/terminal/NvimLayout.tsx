@@ -57,6 +57,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
   const [selectedFileId, setSelectedFileId] = useState<string>('');
   const [openFileId, setOpenFileId] = useState<string>('');
   const [cursorPos, setCursorPos] = useState({ line: 1, col: 1 });
+  const [showHelp, setShowHelp] = useState(false);
   
   const [showTechFilter, setShowTechFilter] = useState(false);
   const [activeTechFilters, setActiveTechFilters] = useState<string[]>([]);
@@ -175,6 +176,11 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
       }
       
       if (e.key === 'Escape') {
+        if (showHelp) {
+          setShowHelp(false);
+          return;
+        }
+
         if (mode === 'NORMAL') {
           const now = Date.now();
           if (now - lastEscTime < 500) {
@@ -215,6 +221,12 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
       
       if (e.ctrlKey && e.key === 'l') {
         setActivePane('content');
+        return;
+      }
+
+      if (e.key === '?' && mode === 'NORMAL') {
+        e.preventDefault();
+        setShowHelp(true);
         return;
       }
 
@@ -719,6 +731,65 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
       <div className="fixed bottom-8 right-8 text-ctp-overlay0 text-xs font-mono pointer-events-none opacity-50">
         Typed by Brad Ash
       </div>
+      
+      {showHelp && (
+        <div 
+          className="fixed inset-0 bg-ctp-crust/80 flex items-center justify-center z-50"
+          onClick={() => setShowHelp(false)}
+        >
+          <div 
+            className="bg-ctp-base border border-ctp-surface1 rounded-lg p-6 max-w-2xl max-h-[80vh] overflow-y-auto shadow-xl"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-4 border-b border-ctp-surface1 pb-2">
+              <h2 className="text-ctp-lavender text-lg font-bold">Keyboard Shortcuts</h2>
+              <button 
+                onClick={() => setShowHelp(false)}
+                className="text-ctp-subtext0 hover:text-ctp-text"
+              >
+                ✕
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-6 text-sm">
+              <div>
+                <h3 className="text-ctp-peach font-semibold mb-2">Navigation</h3>
+                <div className="space-y-1 text-ctp-subtext0">
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">j</kbd> / <kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">↓</kbd> Move down</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">k</kbd> / <kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">↑</kbd> Move up</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">h</kbd> / <kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">←</kbd> Collapse / Left pane</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">l</kbd> / <kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">→</kbd> Expand / Right pane</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">gg</kbd> Go to top</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">G</kbd> Go to bottom</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Enter</kbd> Open file</p>
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-ctp-peach font-semibold mb-2">Search & Filter</h3>
+                <div className="space-y-1 text-ctp-subtext0">
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">/</kbd> Search files</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">t</kbd> Toggle tech filter</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">n</kbd> Next search result</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">N</kbd> Previous search result</p>
+                </div>
+                
+                <h3 className="text-ctp-peach font-semibold mb-2 mt-4">Commands</h3>
+                <div className="space-y-1 text-ctp-subtext0">
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">:</kbd> Command mode</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">:q</kbd> Go home</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Esc</kbd> Normal mode</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Esc Esc</kbd> Go home</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-4 pt-3 border-t border-ctp-surface1 text-center text-ctp-subtext0 text-xs">
+              Press <kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">?</kbd> to toggle this help
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
