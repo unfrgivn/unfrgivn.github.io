@@ -174,6 +174,12 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
         }
         return;
       }
+
+      if (e.ctrlKey && e.key === 'c') {
+        e.preventDefault();
+        window.location.href = '/';
+        return;
+      }
       
       if (e.key === 'i' && mode === 'NORMAL') {
         setMode('INSERT');
