@@ -1,7 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
 import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CommandPalette from '../components/react/CommandPalette';
 import '../styles/global.css';
 import '@fontsource-variable/inter';
 import '@fontsource/jetbrains-mono';
@@ -13,6 +15,13 @@ interface Props {
 }
 
 const { title, description = "Portfolio of a Senior Software Engineer specializing in Platform Engineering and Distributed Systems.", fullscreen = false } = Astro.props;
+
+const projects = await getCollection('projects');
+const projectData = projects.map(p => ({
+  slug: p.slug,
+  title: p.data.title,
+  company: p.data.company,
+}));
 ---
 
 <!doctype html>
@@ -39,6 +48,7 @@ const { title, description = "Portfolio of a Senior Software Engineer specializi
       <slot />
     </main>
     {!fullscreen && <Footer />}
+    <CommandPalette client:load projects={projectData} />
   </body>
 </html>
 
