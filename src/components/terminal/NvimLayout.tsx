@@ -452,15 +452,23 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
               }
             }}
           >
-            <span className="mr-2 w-4 text-center">
+            <span className="mr-2 w-4 text-center flex items-center justify-center">
               {node.type === 'folder' ? (
-                <span className="text-ctp-blue">
-                  {node.isOpen ? '📂' : '📁'}
-                </span>
+                node.isOpen ? (
+                  <svg className="w-4 h-4 text-ctp-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6.5l-2-2H5a2 2 0 00-2 2z" />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4 text-ctp-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6.5l-2-2H5a2 2 0 00-2 2v0z" />
+                    <path d="M3 9h18" />
+                  </svg>
+                )
               ) : (
-                <span className="text-ctp-mauve">
-                  📄
-                </span>
+                <svg className="w-4 h-4 text-ctp-mauve" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" />
+                  <path d="M14 2v6h6" />
+                </svg>
               )}
             </span>
             <span>{node.name}</span>
