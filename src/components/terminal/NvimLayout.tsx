@@ -58,9 +58,20 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
   const [openFileId, setOpenFileId] = useState<string>('');
   const [cursorPos, setCursorPos] = useState({ line: 1, col: 1 });
   const [showHelp, setShowHelp] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   const [showTechFilter, setShowTechFilter] = useState(false);
   const [activeTechFilters, setActiveTechFilters] = useState<string[]>([]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const allTechTags = useMemo(() => {
     const tags = new Set<string>();
@@ -435,6 +446,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
               setSelectedFileId(node.id);
               if (node.type === 'file') {
                 setOpenFileId(node.id);
+                if (isMobile) setActivePane('content');
               } else {
                 toggleFolder(node.id);
               }
@@ -495,7 +507,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
   const activeFile = getActiveFile();
 
   return (
-    <div className="flex flex-col h-screen bg-ctp-base text-ctp-text font-mono overflow-hidden select-none p-4">
+    <div className="flex flex-col h-screen bg-ctp-base text-ctp-text font-mono overflow-hidden select-none p-2 md:p-4">
       <div className="flex flex-col flex-1 border border-ctp-surface1 rounded-lg shadow-2xl overflow-hidden relative crt-curve">
         <div className="scanlines pointer-events-none"></div>
         
@@ -508,12 +520,22 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
             </div>
             <span className="ml-2 font-bold opacity-75">nvim — {activeFile?.path || 'portfolio'}</span>
           </div>
-          <div className="opacity-50">[+]</div>
+          <div className="flex items-center gap-4">
+            {isMobile && (
+              <button 
+                className="px-2 py-0.5 bg-ctp-surface0 rounded border border-ctp-surface1 text-ctp-blue font-bold"
+                onClick={() => setActivePane(activePane === 'tree' ? 'content' : 'tree')}
+              >
+                {activePane === 'tree' ? 'View File' : 'View Tree'}
+              </button>
+            )}
+            <div className="opacity-50 hidden sm:block">[+]</div>
+          </div>
         </div>
 
         <div className="flex flex-1 overflow-hidden">
           
-          <div className={`w-80 flex flex-col border-r border-ctp-surface1 bg-ctp-mantle/50 ${activePane === 'tree' ? 'brightness-110' : 'brightness-90 opacity-80'}`}>
+          <div className={`w-full md:w-80 flex flex-col border-r border-ctp-surface1 bg-ctp-mantle/50 ${activePane === 'tree' ? 'brightness-110 flex' : 'brightness-90 opacity-80 hidden md:flex'}`}>
             <div className="px-3 py-2 text-xs font-bold text-ctp-blue uppercase tracking-wider border-b border-ctp-surface1 mb-1">
               File Explorer
             </div>
@@ -560,18 +582,18 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
 
           <div 
             id="main-content"
-            className={`flex-1 flex flex-col bg-ctp-base overflow-y-auto relative outline-none ${activePane === 'content' ? '' : 'opacity-90'}`}
+            className={`flex-1 flex flex-col bg-ctp-base overflow-y-auto relative outline-none ${activePane === 'content' ? 'flex' : 'opacity-90 hidden md:flex'}`}
             tabIndex={0}
           >
             {activeFile && activeFile.content ? (
-              <div key={activeFile.id} className="p-8 max-w-4xl mx-auto w-full animate-in fade-in duration-500 slide-in-from-bottom-2">
+              <div key={activeFile.id} className="p-4 md:p-8 max-w-4xl mx-auto w-full animate-in fade-in duration-500 slide-in-from-bottom-2">
                 <div className="mb-8 border-b border-ctp-surface1 pb-4">
-                  <h1 className="text-3xl font-bold text-ctp-mauve mb-2 tracking-tight terminal-glow">
+                  <h1 className="text-2xl md:text-3xl font-bold text-ctp-mauve mb-2 tracking-tight terminal-glow">
                     <span className="text-ctp-overlay1 mr-2 font-light">#</span>
                     {activeFile.content.data?.title || activeFile.name}
                   </h1>
                   {activeFile.content.data?.role && (
-                    <div className="flex items-center gap-4 text-ctp-subtext0 mt-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-ctp-subtext0 mt-2 text-sm">
                       <span className="flex items-center gap-1">
                         <span className="text-ctp-blue">@</span> {activeFile.content.data.role}
                       </span>
@@ -708,17 +730,17 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
           )}
 
           {mode !== 'COMMAND' && (
-            <div className="px-3 flex items-center flex-1 text-ctp-text">
+            <div className="px-3 flex items-center flex-1 text-ctp-text truncate">
               {activeFile ? activeFile.path : '[No Name]'}
-              {activeFile && <span className="ml-2 opacity-50 text-ctp-overlay2">[Read Only]</span>}
+              {activeFile && <span className="ml-2 opacity-50 text-ctp-overlay2 hidden sm:inline">[Read Only]</span>}
             </div>
           )}
 
           <div className="flex items-center">
-            <div className="px-3 flex items-center text-ctp-subtext0 bg-ctp-surface1 h-full">
+            <div className="px-3 flex items-center text-ctp-subtext0 bg-ctp-surface1 h-full hidden sm:flex">
               markdown
             </div>
-            <div className="px-3 flex items-center text-ctp-subtext0 bg-ctp-surface2 h-full">
+            <div className="px-3 flex items-center text-ctp-subtext0 bg-ctp-surface2 h-full hidden sm:flex">
               utf-8
             </div>
             <div className="px-3 flex items-center text-ctp-base bg-ctp-blue h-full font-bold">
