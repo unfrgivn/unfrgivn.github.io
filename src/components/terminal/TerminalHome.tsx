@@ -9,13 +9,19 @@ const ASCII_BANNER = `
  ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
 `.trim();
 
+const getOSVersion = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `Human v${year}.${month}.${day}`;
+};
+
 const FASTFETCH_DATA = [
-  { label: 'OS', value: 'Human v2024.12.19' },
   { label: 'Uptime', value: '15 years in production' },
   { label: 'Shell', value: 'zsh + mass-customized dotfiles' },
-  { label: 'DE', value: 'Remote-First (async preferred)' },
-  { label: 'WM', value: 'Multiple monitors + standing desk' },
-  { label: 'Terminal', value: 'Ghostty' },
+  { label: 'DE', value: 'macOS' },
+  { label: 'Terminal', value: 'Tmux 3.6' },
   { label: 'CPU', value: 'Caffeinated (8 cores, 0 blockers)' },
   { label: 'GPU', value: 'Whiteboard-Accelerated™' },
   { label: 'Memory', value: '∞ Stack Overflow tabs' },
@@ -108,6 +114,10 @@ export default function TerminalHome() {
               <div className="h-px bg-ctp-surface1 w-full"></div>
               
               <div className="space-y-1">
+                <div className="flex gap-2">
+                  <span className="text-ctp-blue min-w-[100px]">OS</span>
+                  <span className="text-ctp-text opacity-90">{getOSVersion()}</span>
+                </div>
                 {FASTFETCH_DATA.map((item) => (
                   <div key={item.label} className="flex gap-2">
                     <span className="text-ctp-blue min-w-[100px]">{item.label}</span>
