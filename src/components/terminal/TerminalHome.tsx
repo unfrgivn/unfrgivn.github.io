@@ -35,7 +35,7 @@ const FASTFETCH_DATA = [
   { label: 'Terminal', value: 'Tmux 3.6' },
   { label: 'CPU', value: 'Caffeinated (8 cores, 0 blockers)' },
   { label: 'GPU', value: 'Whiteboard-Accelerated™' },
-  { label: 'Memory', value: '357 Chrome tabs' },
+  { label: 'Memory', value: 'RAM: 32GB / Chrome: 31.9GB' },
   { label: 'Disk', value: '128GB of PDFs "to read later"' },
   { label: 'Network', value: 'Low latency, high bandwidth' },
   { label: 'Coords', value: '44.952667, -93.305687' },
