@@ -454,12 +454,12 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
           >
             <span className="mr-2 w-4 text-center">
               {node.type === 'folder' ? (
-                <span className={node.isOpen ? 'text-ctp-blue' : 'text-ctp-blue'}>
-                  {node.isOpen ? '▼' : '▶'}
+                <span className="text-ctp-blue">
+                  {node.isOpen ? '󰝰' : '󰉋'}
                 </span>
               ) : (
-                <span className={getFileIconColor(node.name)}>
-                  {node.content?.data?.icon ? node.content.data.icon : getFileIcon(node.name)}
+                <span className="text-ctp-mauve">
+                  󰈙
                 </span>
               )}
             </span>
