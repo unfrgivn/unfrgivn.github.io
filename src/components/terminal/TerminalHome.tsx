@@ -39,6 +39,7 @@ const FASTFETCH_DATA = [
   { label: 'Disk', value: '500+ repos cloned' },
   { label: 'Network', value: 'Low latency, high bandwidth' },
   { label: 'Coords', value: '44.952667, -93.305687' },
+  { label: 'Locale', value: 'en_US.UTF-8' },
 ];
 
 const SKILLS = [
