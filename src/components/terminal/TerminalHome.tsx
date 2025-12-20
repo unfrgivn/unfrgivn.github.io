@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 const ASCII_BANNER = `
- ███  ███  ███  █ █  ███  ███   █  ███ 
-█   █ █  █ █    ██ █ █  █ █  █ █ █ █  █
-█   █ ███  ██   █ ██ ███  ███  ███ █  █
-█   █ █    █    █  █ █  █ █ █  █ █ █  █
- ███  █    ███  █  █ ███  █ █  █ █ ███ 
+ ██████╗ ██████╗ ███████╗███╗   ██╗    ██████╗ ██████╗  █████╗ ██████╗ 
+██╔═══██╗██╔══██╗██╔════╝████╗  ██║    ██╔══██╗██╔══██╗██╔══██╗██╔══██╗
+██║   ██║██████╔╝█████╗  ██╔██╗ ██║    ██████╔╝██████╔╝███████║██║  ██║
+██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║    ██╔══██╗██╔══██╗██╔══██║██║  ██║
+╚██████╔╝██║     ███████╗██║ ╚████║    ██████╔╝██║  ██║██║  ██║██████╔╝
+ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
 `.trim();
 
 const FASTFETCH_DATA = [
@@ -100,7 +101,7 @@ export default function TerminalHome() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 mb-8 md:mb-12">
             
             <div className="flex flex-col gap-4 animate-in fade-in duration-700 slide-in-from-left-4">
-              <pre className="text-ctp-blue font-bold text-[10px] sm:text-xs md:text-sm leading-tight select-none overflow-x-auto">
+              <pre className="text-ctp-blue font-bold text-[6px] sm:text-[8px] md:text-[10px] leading-none select-none overflow-x-auto">
 {ASCII_BANNER}
               </pre>
               
