@@ -466,7 +466,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
                   </svg>
                 )
               ) : (
-                <svg className="w-4 h-4 text-ctp-mauve" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <svg className="w-3.5 h-3.5 text-ctp-mauve" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" />
                   <path d="M14 2v6h6" />
                 </svg>
