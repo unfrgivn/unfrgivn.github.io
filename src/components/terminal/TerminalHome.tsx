@@ -35,7 +35,7 @@ const FASTFETCH_DATA = [
   { label: 'Terminal', value: 'Tmux 3.6' },
   { label: 'CPU', value: 'Caffeinated (8 cores, 0 blockers)' },
   { label: 'GPU', value: 'Whiteboard-Accelerated™' },
-  { label: 'Memory', value: '∞ Stack Overflow tabs' },
+  { label: 'Memory', value: '357 Chrome tabs' },
   { label: 'Disk', value: '500+ repos cloned' },
   { label: 'Network', value: 'Low latency, high bandwidth' },
   { label: 'Coords', value: '44.952667, -93.305687' },
