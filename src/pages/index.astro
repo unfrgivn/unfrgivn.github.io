@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TerminalHome from '../components/terminal/TerminalHome';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => a.data.priority - b.data.priority);
+---
+
+<Layout title="Brad Ash | Portfolio" fullscreen={true}>
+  <TerminalHome client:load />
+</Layout>
+
+<style is:global>
+  body {
+    overflow: hidden;
+  }
+</style>

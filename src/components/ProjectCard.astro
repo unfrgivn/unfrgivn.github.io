@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { ArrowUpRight } from 'lucide-react';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  featured?: boolean;
+}
+
+const { project, featured = false } = Astro.props;
+const { slug } = project;
+const { title, summary, tech, domains, role } = project.data;
+---
+
+<a 
+  href={`/projects/${slug}`}
+  class:list={[
+    "group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-surface-1 p-6 transition-all duration-300 hover:border-primary/20 hover:bg-surface-2 hover:shadow-lg hover:shadow-primary/5",
+    featured ? "h-full" : "h-full"
+  ]}
+>
+  <div class="relative z-10 flex flex-col gap-4">
+    <div class="flex items-start justify-between">
+      <div class="flex flex-col gap-2">
+        {domains && (
+          <div class="flex flex-wrap gap-2">
+            {domains.slice(0, 2).map((domain: string) => (
+              <span class="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-2 py-0.5 text-xs font-medium text-primary-2">
+                {domain}
+              </span>
+            ))}
+          </div>
+        )}
+        <h3 class:list={[
+          "font-bold text-text group-hover:text-primary transition-colors",
+          featured ? "text-3xl" : "text-xl"
+        ]}>
+          {title}
+        </h3>
+        <p class="text-sm text-muted">{role}</p>
+      </div>
+      <ArrowUpRight className="h-5 w-5 text-muted transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+    </div>
+
+    <p class="line-clamp-3 text-sm leading-relaxed text-muted/80">
+      {summary}
+    </p>
+  </div>
+
+  <div class="relative z-10 mt-6 flex flex-wrap gap-2">
+    {tech.slice(0, featured ? 6 : 4).map((t: string) => (
+      <span class="rounded bg-surface-2 px-1.5 py-0.5 text-[10px] font-mono text-faint uppercase tracking-wider transition-colors group-hover:bg-surface-1 group-hover:text-muted">
+        {t}
+      </span>
+    ))}
+    {tech.length > (featured ? 6 : 4) && (
+      <span class="rounded px-1.5 py-0.5 text-[10px] font-mono text-faint">
+        +{tech.length - (featured ? 6 : 4)}
+      </span>
+    )}
+  </div>
+
+  <div class="absolute inset-0 z-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+</a>

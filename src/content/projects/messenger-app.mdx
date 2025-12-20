@@ -1,0 +1,38 @@
+---
+title: Messenger App
+icon: '💬'
+slug: messenger-app
+featured: false
+company: Chowbus
+role: Software Engineer
+domains: [Mobile, Backend, Real-time]
+tech: [Android, GCP, JavaScript, Kafka, Microservices, React Native, SQL, iOS, Swift, Kotlin, Feathers.js]
+summary: Real-time messenger app for a peer-to-peer service that connects those going through infertility with a mentor.
+highlights:
+  - Developed a secure, native messaging app for iOS and Android.
+  - Implemented real-time communication using Feathers.js websockets.
+  - Built an event-driven push notification system with Kafka.
+---
+
+### Problem
+Customers are messaging each other using email and SMS which does not allow for us to handle non-responsive matches or filter out violations to our terms of service.
+
+### Goals
+Provide a native messaging app that looks and feels on par with the other major service our demographic uses daily: Facebook, Snapchat, Instagram, etc…
+
+### Criteria
+- Available for both iOS and Android
+- Secure platform that allows messages to be checked for violations without providing access to the message content to any database users.
+- Message frequency and patterns are analyzed to foster communication and ensure that mentors are holding up their commitments.
+- Expected feature set should mirror iChat: messaging, read notices, gifs, pictures, and video.
+- Push notification with preferences to manage conversation alerts.
+
+### Outcome
+- **Native Experience**: App built with React Native + Typescript with some native module customization done in Swift/Kotlin.
+- **Event-Driven**: Kafka used to build event-driven API for push notifications.
+- **Real-Time**: Feathers.js used to broadcast state changes to all app users via websockets.
+
+### Tech Stack
+- **Mobile**: React Native, Swift, Kotlin
+- **Backend**: NodeJS, Feathers.js
+- **Infrastructure**: Kafka

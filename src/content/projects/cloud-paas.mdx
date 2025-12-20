@@ -1,0 +1,69 @@
+---
+title: "Cloud Platform as a Service"
+icon: '☁️'
+slug: "cloud-paas"
+featured: true
+company: "Chowbus"
+role: "Staff Software Engineer"
+domains: ["Platform", "DevEx", "Infrastructure"]
+tech:
+  - AWS
+  - Azure
+  - Control Tower
+  - Terraform
+  - Kubernetes
+  - Go
+  - Docker
+  - Jenkins
+summary: "Platform as a Service (PaaS) cloud platform to help users accelerate outcomes in a secure and scalable fashion."
+highlights:
+  - "Automated account creation and governance for AWS and Azure via ServiceNow"
+  - "Implemented Control Tower with Step Functions for end-to-end orchestration"
+  - "Standardized multi-cloud strategy using Terraform and Azure DevOps"
+metrics:
+  - label: "Onboarding"
+    value: "Days → Hours"
+  - label: "Compliance"
+    value: "100%"
+media:
+  cover: "/images/projects/cloud-paas/cover.webp"
+---
+
+### Problem
+
+We needed to bring together a diverse technology stack and legacy accounts to live under a single, governed organization. The current solution of runbooks, scripts, and manual configuration is cumbersome and slows the business down, especially at the beginning of the fiscal year when dozens of business teams all require new cloud accounts.
+
+### Goal
+
+Automate the process of creating new AWS accounts and Azure subscriptions through our ITSM to allow for end-to-end approvals and auditing of new cloud environments. Ensure new environments are secure, well-architected, resilient, and scalable.
+
+### Criteria
+
+*   All service catalog products available via ServiceNow with approval workflows.
+*   Transparency and auditing of the operations to stand-up new accounts and services.
+*   Automated QA to ensure that all security checks and guardrails are in place on new resources.
+*   Standard process across all cloud service providers (CSPs) to allow teams to deploy multi-cloud strategies with the least amount of friction.
+
+### Outcome
+
+*   Multiple self-serve products were created for customers to manage cloud resources via ServiceNow: account creation, account decommission, managing users and roles, vpc/vnet creation.
+*   AWS leverages Control Tower with Step Functions and Eventbridge to execute all operations and deploy new accounts.
+*   Azure leverages Terraform and Azure DevOps to execute all operations and deploy new subscriptions.
+*   All processes are fully integrated with our vendor SaaS for vulnerability management, observability, FinOps, and CMDB.
+
+### Tech Stack
+
+**AWS**
+*   Control Tower
+*   Service Catalog
+*   Organizations + SCP
+*   Cloud Formation
+*   Terraform
+*   System Manager (SSM)
+*   Step Functions / Lambda
+*   GitHub Actions
+
+**Azure**
+*   Azure DevOps
+*   Terraform
+*   Management Groups + Policy

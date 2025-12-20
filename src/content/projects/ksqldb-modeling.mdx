@@ -1,0 +1,35 @@
+---
+title: "ksqlDB Modeling Pipelines"
+icon: '🌊'
+slug: "ksqldb-modeling"
+featured: true
+role: "Senior Software Engineer"
+company: "Tech Co"
+timeframe: "2020 - 2021"
+domains: ["Data", "DevOps"]
+tech: ["JavaScript", "Kafka", "ksqlDB", "NodeJS", "MetamorphosisJS"]
+summary: "Proper DevOps for managing ksqlDB models."
+highlights:
+  - "Created deployable data models managed as code"
+  - "Enable ephemeral environments for feature testing"
+  - "Built rudimentary ERD visualization for data lineage"
+metrics: []
+media:
+  cover: ""
+---
+
+### Problem
+When using the OSS version of ksqlDB, all work is done via the CLI; there is no management interface, error handling, or versioning. This made it challenging to test, onboard new pipelines, and pair-program with other engineers.
+
+### Goal
+Create deployable data models that could go from source topics through infinite stream/table transformations and produce enriched stream, tables, or topics.
+
+### Criteria
+- Models fully managed as KSQL files inside a repository using our common development tools for code quality, testing, and CI/CD.
+- Easy to spin up and tear down for feature branches with ability to siphon off limited data sets from source topics for testing.
+- Models are ephemeral and can always be destroyed and recreated assuming the source data persists.
+
+### Outcome
+- Leveraged in-house MetamorphosisJS framework to deploy application with simple configuration for environment and model. This allowed for executing ksqlDB commands in the proper order and with detailed error handling.
+- Rudimentary ERD visualization of ksqlDB components along with change logs helped quickly diagnose issues and understand changes in data behavior.
+- Configurable materialization of tables and stream sink to RDBMS or data lake/warehouse storage.

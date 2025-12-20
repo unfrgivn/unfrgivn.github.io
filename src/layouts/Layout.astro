@@ -1,0 +1,55 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '@fontsource-variable/inter';
+import '@fontsource/jetbrains-mono';
+
+interface Props {
+  title: string;
+  description?: string;
+  fullscreen?: boolean;
+}
+
+const { title, description = "Portfolio of a Senior Software Engineer specializing in Platform Engineering and Distributed Systems.", fullscreen = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body class="bg-background text-foreground min-h-screen flex flex-col font-sans antialiased selection:bg-primary/30 selection:text-primary-foreground">
+    {!fullscreen && <div class="fixed inset-0 z-[-1] bg-[url('/noise.svg')] opacity-[0.03] pointer-events-none mix-blend-overlay"></div>}
+    {!fullscreen && <Header />}
+    <main class={fullscreen ? "" : "flex-1"}>
+      <slot />
+    </main>
+    {!fullscreen && <Footer />}
+  </body>
+</html>
+
+<style is:global>
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--surface-2);
+    border-radius: 5px;
+    border: 2px solid var(--bg);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted);
+  }
+</style>
