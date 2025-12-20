@@ -60,6 +60,16 @@ export default function TerminalHome() {
   }, []);
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        window.location.href = '/projects';
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
     const text = "nvim projects/";
     let i = 0;
     const timeout = setTimeout(() => {
