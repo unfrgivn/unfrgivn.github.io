@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import NvimLayout from '../components/terminal/NvimLayout';
+
+const projects = await getCollection('projects');
+---
+
+<Layout title="Brad Ash | Terminal Portfolio" description="Interactive terminal portfolio of Brad Ash, Senior Software Engineer." fullscreen={true}>
+  <NvimLayout projects={projects} client:only="react" />
+</Layout>
+
+<style is:global>
+  body {
+    overflow: hidden;
+  }
+</style>

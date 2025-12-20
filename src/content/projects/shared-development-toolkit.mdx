@@ -1,0 +1,41 @@
+---
+title: Shared Development Toolkit
+slug: shared-development-toolkit
+featured: false
+company: Chowbus
+role: Software Engineer
+domains: [DevOps, Infrastructure, Tooling]
+tech: [GitHub Actions, JavaScript, PHP, Python, Docker, Kubernetes]
+summary: Unified set of development tools, plugins, libraries, and CI/CD pipelines used across all applications.
+highlights:
+  - Centralized development tools and CI/CD pipelines in a monorepo.
+  - Standardized code quality, testing, and deployment processes across teams.
+  - Automated dependency management and versioning with semantic release.
+---
+
+### Problem
+- Lack of process around tool selection lead to multiple packages for code quality, testing, and functionality.
+- Repeated use of contributed packages lead to scattered and inconsistent versions and configuration.
+
+### Goals
+Drive all packages and shared development tools from a central repository that could be updated, documented, and governed by DevSecOps.
+
+### Criteria
+- Singular instruction set for configuration and definition of contributed packages
+- Deploys artifacts that are compatible out-of-the-box with common package managers
+- The repository itself is managed using the development tools it hosts
+
+### Outcome
+- **Monorepo**: Created with self-referencing configuration for code quality and transposition.
+- **Componentization**: Individual components for linting, compiling, testing, common libraries, conventional commits, and more all built, tested, and deployed to read-only mirrors and package indecies.
+- **Automation**: Smart-detection of changes with dependency chaining used to ensure that only necessary packages were rebuilt and properly versioned based on conventional commits.
+
+### Scope
+- **CI/CD**: Build images, Deploy images, Deploy app to GKE, Push build to mirrors
+- **PHP**: Coding standards, Composer plugin template, Helper library, Wordpress Plugins
+- **Python**: Helper library, Pylint, unittest config
+- **JS**: Babel, browserslist, eslint, prettier, stylelint, utils, webpack
+
+### Tech Stack
+- **Languages**: Python, PHP, JavaScript
+- **Infrastructure**: Docker, Kubernetes, GitHub Actions

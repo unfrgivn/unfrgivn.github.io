@@ -1,0 +1,38 @@
+---
+title: Automated QA Deployments
+slug: automated-qa-deployments
+featured: false
+company: Chowbus
+role: Software Engineer
+domains: [Platform, DevOps, Automation]
+tech: [GCP, GitHub Actions, Kubernetes, Python]
+summary: Automated system to deploy testable QA versions for all Pull Requests to Kubernetes.
+highlights:
+  - Enabled non-technical stakeholders to test acceptance criteria on isolated feature branch endpoints.
+  - Implemented automatic resource management with unique Kubernetes namespaces and auto-teardown.
+  - Established deterministic subdomain patterns linking deployments directly to project management tickets.
+---
+
+### Problem
+Business teams and scrum leaders were unable to test acceptance criteria on an isolated feature branch deployment. Changes were often muddled alongside other queued changes in development deployments, or customers had to screen share with engineers to verify requests were completed.
+
+### Goal
+Allow non-technical users and those without access to local development environments to view their requested changes implemented and test functionality where applicable.
+
+### Criteria
+- Deploy individual feature branch endpoints that are accessible by internal stakeholders.
+- QA endpoints should be automated and consistent across all applicable applications.
+- Endpoints should be scoped to a single ticket.
+
+### Outcome
+- **Dynamic Environments**: Using GitHub Actions and Kustomize, unique Kubernetes namespaces and deployments were spun up for all feature branch PRs.
+- **Traceability**: Unique subdomains were created using a deterministic pattern for project and ticket IDs, automatically updating the originating ticket.
+- **Efficiency**: Unused resources were automatically torn down after the feature was merged and the ticket was closed.
+
+### Tech Stack
+- GitHub Actions
+- Kubernetes
+- Serverless Functions
+- Shell / Python
+- Cloud DNS
+- Jira / ClickUp Integration

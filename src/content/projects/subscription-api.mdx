@@ -1,0 +1,37 @@
+---
+title: Subscription API
+slug: subscription-api
+featured: false
+company: Chowbus
+role: Software Engineer
+domains: [Backend, Infrastructure, Database]
+tech: [Go, Kubernetes, Percona, Python, Docker]
+summary: Reverse engineer subscription fulfillment backend into modern microservice architecture.
+highlights:
+  - Migrated legacy Oracle-based fulfillment system to modern microservices.
+  - Implemented Percona XtraDB Cluster with two-way sync to legacy Oracle DB.
+  - Decoupled critical business logic from monolithic legacy systems.
+---
+
+### Problem
+Subscription fulfillment all lives within a black box application and an aging Oracle database. We were unable to extend functionality beyond leveraging extra database fields for purposes they were not intended and directly mutating the data layer with batch jobs in order to achieve the desired outcomes from the processes we could not change.
+
+This was extremely fragile and posed enormous business risk. Only the top engineers were allowed access to this system. And the majority of requests from the sales and marketing teams for new strategies were denied on the reason that it was technically impossible.
+
+### Goals
+Reverse engineer the fulfillment process so that we could iterate away from this legacy system and enhance functionality.
+
+### Criteria
+- Leverage microservices to allow for parallel building of critical endpoints in a decoupled and agile fashion.
+- All CUD operations must evaluate upstream/downstream impact to know if a transaction can be sent asynchronously or if a blocking change must happen in both data systems before proceeding.
+- Reporting to continuously validate data parity.
+
+### Outcome
+- **Modernization**: Containerized APIs built in a hybrid of Python and Go as we tested some different API frameworks.
+- **Hybrid Data**: Percona XtraDB Cluster set up with two-way synchronization to Oracle. This allowed us to start extending the data layer in a technology that was more familiar to our stack without sacrificing any enterprise security or performance.
+- **Migration**: Over the course of two years, all jobs were successfully replicated as new services and all direct writes to Oracle ceased, relegating it to a read-only system for legacy reporting. Python FastAPI won out over Go Gin due only to better market fit for engineering talent.
+
+### Tech Stack
+- **Languages**: Python, Go
+- **Infrastructure**: Docker, Kubernetes
+- **Database**: Percona XtraDB Cluster, Oracle

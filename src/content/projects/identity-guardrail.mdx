@@ -1,0 +1,30 @@
+---
+title: "Identity Guardrail Management (IGM)"
+slug: "identity-guardrail"
+featured: true
+role: "Senior Software Engineer"
+company: "Tech Co"
+timeframe: "2020 - 2021"
+domains: ["Security", "Cloud Infrastructure"]
+tech: ["AWS", "Azure", "Terraform", "Vault"]
+summary: "Fully govern access keys by generating all access keys through a secure vending machine product and managing them in our enterprise secrets manager."
+highlights:
+  - "Eliminated long-lived access keys on developer machines"
+  - "Automated key rotation and injection into local environments"
+  - "Centralized audit log of all access key generations"
+metrics: []
+media:
+  cover: ""
+---
+
+### Problem
+Developers were managing long-lived AWS/Azure access keys locally, leading to security risks, potential leakage, and difficulty in rotating credentials during incidents.
+
+### Goal
+Fully govern access keys by generating all access keys through a secure vending machine product and managing them in our enterprise secrets manager.
+
+### Outcome
+- Built a secure "vending machine" API that generates short-lived credentials.
+- Integrated with HashiCorp Vault for secure storage and retrieval.
+- Enforced MFA for all credential generation.
+- Drastically reduced the attack surface by eliminating permanent static credentials on developer workstations.

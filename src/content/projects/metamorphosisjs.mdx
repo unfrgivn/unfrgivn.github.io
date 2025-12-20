@@ -1,0 +1,38 @@
+---
+title: MetamorphosisJS
+slug: metamorphosisjs
+featured: false
+company: Taptica
+role: Software Engineer
+domains: [Backend, Infrastructure, Open Source]
+tech: [JavaScript, Kafka, Microservices, SQL, Shell, ksqlDB, TypeScript]
+summary: NodeJS framework for building powerful, event-driven streams.
+highlights:
+  - Created a developer-friendly framework for Kafka integration in Node.js.
+  - Reduced complexity for junior developers to build event-driven applications.
+  - Included built-in support for Schema Registry, Avro, and database adapters.
+---
+
+### Problem
+We desired to expand use of Kafka, but setting up consumers and producers was cumbersome and leaned heavily on senior engineers with Java experience.
+
+### Goal
+Create a NodeJS framework that a junior developer, who primarily works in backend Javascript, could integrate Kafka workflows into their applications.
+
+### Criteria
+- Allow consuming/producing from/to multiple topics with a simple config abstraction and common NodeJS skills. All available kafkajs options for performance and concurrency should be available.
+- At-least-once guarantee operations for consumers.
+- Clear debug logging to help novice Kafka users understand breakdowns in their consumers and producers.
+- Pluggable to allow for reusable consumer and producers for common tasks as well as different data adapters used in source/sink workloads.
+- It should be easy to maintain and update similar to any OSS framework and maintain backwards compatibility with all minor version updates.
+
+### Outcome
+- **Efficiency**: Express-like framework that allowed for building a full-featured NodeJS app to integrate with Kafka in just a few lines of code.
+- **Integration**: Database adapter allows easy read/write from DB provider modules. First use-case was to replace Kafka Connect and overcome slow performance and feature limitations of existing JDBC sink connector.
+- **Data Integrity**: Schema registry added for leveraging Avro messages.
+- **Versatility**: Integrated webserver for creating producer endpoints; primarily used for capturing webhooks.
+- **Open Source**: Built as OSS and fully extensible.
+
+### Tech Stack
+- **Language**: JavaScript (TypeScript)
+- **Infrastructure**: Kafka, ksqlDB
