@@ -86,7 +86,8 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
             company: 'Self',
             tech: ['React', 'TypeScript', 'Node.js', 'Rust', 'Go'],
             domains: ['Frontend', 'Backend', 'DevOps'],
-            summary: "I'm a designer-turned-developer with a passion for building beautiful, functional software."
+            summary: "I'm a designer-turned-developer with a passion for building beautiful, functional software.",
+            icon: '📄'
           },
           body: "I build software that matters. With a background in design and years of engineering experience, I bridge the gap between aesthetics and functionality."
         }
@@ -100,7 +101,8 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
           data: {
             title: 'Contact',
             role: 'Human',
-            summary: 'Get in touch'
+            summary: 'Get in touch',
+            icon: '📄'
           },
           body: "Find me on GitHub at github.com/unfrgivn or email me."
         }
@@ -386,7 +388,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
                 </span>
               ) : (
                 <span className={getFileIconColor(node.name)}>
-                  {getFileIcon(node.name)}
+                  {node.content?.data?.icon ? node.content.data.icon : getFileIcon(node.name)}
                 </span>
               )}
             </span>
@@ -452,7 +454,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
 
         <div className="flex flex-1 overflow-hidden">
           
-          <div className={`w-64 flex flex-col border-r border-ctp-surface1 bg-ctp-mantle/50 ${activePane === 'tree' ? 'brightness-110' : 'brightness-90 opacity-80'}`}>
+          <div className={`w-80 flex flex-col border-r border-ctp-surface1 bg-ctp-mantle/50 ${activePane === 'tree' ? 'brightness-110' : 'brightness-90 opacity-80'}`}>
             <div className="px-3 py-2 text-xs font-bold text-ctp-blue uppercase tracking-wider border-b border-ctp-surface1 mb-1">
               File Explorer
             </div>
