@@ -120,6 +120,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
   const [command, setCommand] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
+  const [lastEscTime, setLastEscTime] = useState<number>(0);
   
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -129,9 +130,9 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
              setIsSearching(false);
              setMode('NORMAL');
           } else {
-            if (command === 'q' || command === 'q!') {
-              alert("E37: No write since last change (add ! to override)");
-            } else if (command === 'w' || command === 'wq') {
+            if (command === 'q' || command === 'q!' || command === 'wq') {
+              window.location.href = '/';
+              return;
             }
             setCommand('');
             setMode('NORMAL');
@@ -161,7 +162,16 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
       }
       
       if (e.key === 'Escape') {
-        setMode('NORMAL');
+        if (mode === 'NORMAL') {
+          const now = Date.now();
+          if (now - lastEscTime < 500) {
+            window.location.href = '/';
+            return;
+          }
+          setLastEscTime(now);
+        } else {
+          setMode('NORMAL');
+        }
         return;
       }
       
@@ -191,11 +201,6 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
 
       if (mode !== 'NORMAL') return;
 
-      if (e.key === 'q') {
-        alert("E37: No write since last change (add ! to override)");
-        return;
-      }
-
       if (activePane === 'tree') {
         handleTreeNavigation(e.key);
       } 
@@ -220,7 +225,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [mode, activePane, fileTree, selectedFileId, command, isSearching, searchQuery, lastKey]);
+  }, [mode, activePane, fileTree, selectedFileId, command, isSearching, searchQuery, lastKey, lastEscTime]);
 
   const hasMatch = (nodes: FileNode[], query: string): boolean => {
     return nodes.some(n => 
