@@ -4,7 +4,7 @@ import TerminalHome from '../components/terminal/TerminalHome';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
-const projects = allProjects.sort((a, b) => a.data.priority - b.data.priority);
+const projects = allProjects;
 ---
 
 <Layout title="Brad Ash | Portfolio" fullscreen={true}>

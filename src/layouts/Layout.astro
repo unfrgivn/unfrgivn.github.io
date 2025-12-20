@@ -24,6 +24,12 @@ const { title, description = "Portfolio of a Senior Software Engineer specializi
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('catppuccin-theme') || 'macchiato';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <ClientRouter />
   </head>
   <body class="bg-background text-foreground min-h-screen flex flex-col font-sans antialiased selection:bg-primary/30 selection:text-primary-foreground">
