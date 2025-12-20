@@ -110,7 +110,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
             tech: ['React', 'TypeScript', 'Node.js', 'Rust', 'Go'],
             domains: ['Frontend', 'Backend', 'DevOps'],
             summary: "I'm a designer-turned-developer with a passion for building beautiful, functional software.",
-            icon: '📄'
+            icon: ''
           },
           body: "I build software that matters. With a background in design and years of engineering experience, I bridge the gap between aesthetics and functionality."
         }
@@ -125,7 +125,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
             title: 'Contact',
             role: 'Human',
             summary: 'Get in touch',
-            icon: '📄'
+            icon: ''
           },
           body: "Find me on GitHub at github.com/unfrgivn or email me."
         }
@@ -455,7 +455,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
             <span className="mr-2 w-4 text-center">
               {node.type === 'folder' ? (
                 <span className={node.isOpen ? 'text-ctp-blue' : 'text-ctp-blue'}>
-                  {node.isOpen ? '📂' : '📁'}
+                  {node.isOpen ? '▼' : '▶'}
                 </span>
               ) : (
                 <span className={getFileIconColor(node.name)}>
