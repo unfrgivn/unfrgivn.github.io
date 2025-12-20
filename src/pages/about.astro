@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experience = [
+  { company: 'Wpromote', role: 'VP of Engineering', period: '2023 - Present' },
+  { company: 'Capitol Information Group', role: 'VP/Director of Engineering', period: '2018 - 2023' },
+];
+
+const certifications = [
+  { name: 'AWS Solutions Architect Associate', issuer: 'Amazon Web Services', year: '2023' },
+  { name: 'AWS Cloud Practitioner', issuer: 'Amazon Web Services', year: '2023' },
+  { name: 'Azure Administrator Associate', issuer: 'Microsoft', year: '2023' },
+  { name: 'Azure Fundamentals', issuer: 'Microsoft', year: '2023' },
+  { name: 'Terraform Associate', issuer: 'HashiCorp', year: '2024' },
+  { name: 'SnowPro Core', issuer: 'Snowflake', year: '2023' },
+];
+
+const values = [
+  { title: 'Engineering Excellence', description: 'Building systems that scale, with clean architecture and thoughtful design.' },
+  { title: 'Team Growth', description: 'Mentoring engineers from junior to lead, fostering a culture of continuous learning.' },
+  { title: 'Strategic Thinking', description: 'Bridging technical decisions with business outcomes, seeing the bigger picture.' },
+  { title: 'Pragmatic Solutions', description: 'Choosing the right tool for the job, not the newest or shiniest.' },
+];
+---
+
+<Layout title="About | Brad Ash">
+  <div class="max-w-4xl mx-auto px-6 py-16">
+    <!-- Terminal-style header -->
+    <div class="mb-12">
+      <div class="flex items-center gap-2 text-ctp-subtext0 text-sm mb-2 font-mono">
+        <span class="text-ctp-green">~</span>
+        <span>/about</span>
+      </div>
+      <h1 class="text-4xl font-bold text-ctp-text mb-4">About Me</h1>
+      <p class="text-ctp-subtext1 text-lg leading-relaxed">
+        Leadership and strategic thinking are what make me invaluable, but it all begins with a 
+        deep foundation in software engineering. I've spent nearly two decades building systems, 
+        leading teams, and turning complex technical challenges into elegant solutions.
+      </p>
+    </div>
+
+    <!-- Philosophy Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        Philosophy
+      </h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        {values.map((value) => (
+          <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1 hover:border-ctp-surface2 transition-colors">
+            <h3 class="text-ctp-peach font-medium mb-2">{value.title}</h3>
+            <p class="text-ctp-subtext0 text-sm">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        Experience
+      </h2>
+      <div class="space-y-4">
+        {experience.map((exp, i) => (
+          <div class="flex items-start gap-4 p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+            <div class="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-ctp-green"></div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="text-ctp-text font-medium">{exp.role}</h3>
+                <span class="text-ctp-subtext0 text-sm font-mono">{exp.period}</span>
+              </div>
+              <p class="text-ctp-blue">{exp.company}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-ctp-subtext0 text-sm mt-4 italic">
+        See <a href="/projects" class="text-ctp-lavender hover:underline">Projects</a> for detailed case studies of my work.
+      </p>
+    </section>
+
+    <!-- Certifications -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        Certifications
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {certifications.map((cert) => (
+          <div class="p-3 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1 hover:border-ctp-surface2 transition-colors">
+            <p class="text-ctp-text text-sm font-medium">{cert.name}</p>
+            <p class="text-ctp-subtext0 text-xs">{cert.issuer} · {cert.year}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        Education
+      </h2>
+      <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+        <h3 class="text-ctp-text font-medium">Rensselaer Polytechnic Institute</h3>
+        <p class="text-ctp-subtext0 text-sm">Troy, NY · 2002 - 2006</p>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="text-center py-8 border-t border-ctp-surface1">
+      <p class="text-ctp-subtext1 mb-4">Interested in working together?</p>
+      <div class="flex justify-center gap-4">
+        <a 
+          href="mailto:brad@bradash.dev" 
+          class="px-4 py-2 rounded-lg bg-ctp-blue text-ctp-base font-medium hover:bg-ctp-sapphire transition-colors"
+        >
+          Get in Touch
+        </a>
+        <a 
+          href="/brad_ash_resume.pdf" 
+          download
+          class="px-4 py-2 rounded-lg bg-ctp-surface0 text-ctp-text border border-ctp-surface2 hover:bg-ctp-surface1 transition-colors"
+        >
+          Download Resume
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>
