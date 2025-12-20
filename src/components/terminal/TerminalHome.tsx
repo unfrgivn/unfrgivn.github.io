@@ -139,24 +139,24 @@ export default function TerminalHome() {
             
             <div className="flex flex-col gap-4 h-full">
               <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-700 slide-in-from-left-4 bg-ctp-surface0/20 p-4 rounded-md border border-ctp-surface1">
-                <pre className="text-ctp-blue font-bold text-[6px] sm:text-[8px] md:text-[10px] leading-none select-none overflow-x-auto">
+                <pre className="hidden md:block text-ctp-blue font-bold text-[6px] sm:text-[8px] md:text-[10px] leading-none select-none overflow-x-auto">
 {ASCII_BANNER}
                 </pre>
                 
-                <div className="h-px bg-ctp-surface1 w-full"></div>
+                <div className="hidden md:block h-px bg-ctp-surface1 w-full"></div>
                 
                 <div className="space-y-1 flex-1">
-                  <div className="flex gap-2">
-                    <span className="text-ctp-blue min-w-[100px]">OS</span>
+                  <div className="flex gap-2 text-[10px] md:text-sm">
+                    <span className="text-ctp-blue min-w-[80px] md:min-w-[100px]">OS</span>
                     <span className="text-ctp-text opacity-90">{getOSVersion()}</span>
                   </div>
-                  <div className="flex gap-2">
-                    <span className="text-ctp-blue min-w-[100px]">Uptime</span>
+                  <div className="flex gap-2 text-[10px] md:text-sm">
+                    <span className="text-ctp-blue min-w-[80px] md:min-w-[100px]">Uptime</span>
                     <span className="text-ctp-text opacity-90">{getUptime()}</span>
                   </div>
                   {FASTFETCH_DATA.map((item) => (
-                    <div key={item.label} className="flex gap-2">
-                      <span className="text-ctp-blue min-w-[100px]">{item.label}</span>
+                    <div key={item.label} className="flex gap-2 text-[10px] md:text-sm">
+                      <span className="text-ctp-blue min-w-[80px] md:min-w-[100px]">{item.label}</span>
                       <span className="text-ctp-text opacity-90">{item.value}</span>
                     </div>
                   ))}
@@ -170,7 +170,7 @@ export default function TerminalHome() {
                     <div className="w-8 h-4 bg-ctp-teal rounded-sm"></div>
                   </div>
 
-                  <div className="flex gap-3 mt-2 pt-2 border-t border-ctp-surface1">
+                  <div className="flex flex-wrap gap-3 mt-2 pt-2 border-t border-ctp-surface1">
                     {SOCIAL_LINKS.map((link) => (
                       <a
                         key={link.name}
@@ -178,12 +178,12 @@ export default function TerminalHome() {
                         target={link.url.startsWith('http') ? '_blank' : undefined}
                         rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
                         download={link.name === 'Resume' ? true : undefined}
-                        className={`${link.color} hover:underline text-sm flex items-center gap-1 transition-colors hover:text-ctp-lavender`}
+                        className={`${link.color} hover:underline text-xs md:text-sm flex items-center gap-1 transition-colors hover:text-ctp-lavender`}
                         title={link.name}
                       >
-                        <span className="text-xs opacity-75">[</span>
+                        <span className="text-[10px] md:text-xs opacity-75">[</span>
                         {link.name}
-                        <span className="text-xs opacity-75">]</span>
+                        <span className="text-[10px] md:text-xs opacity-75">]</span>
                       </a>
                     ))}
                   </div>
@@ -267,7 +267,7 @@ export default function TerminalHome() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
                 {SKILLS.map((skill) => (
                   <div key={skill.name} className="flex flex-col gap-0.5">
                     <div className="flex justify-between text-[10px] uppercase tracking-wider">

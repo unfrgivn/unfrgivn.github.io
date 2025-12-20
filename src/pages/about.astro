@@ -24,15 +24,15 @@ const values = [
 ---
 
 <Layout title="About | Brad Ash">
-  <div class="max-w-4xl mx-auto px-6 py-16">
+  <div class="max-w-4xl mx-auto px-4 py-8 md:px-6 md:py-16">
     <!-- Terminal-style header -->
     <div class="mb-12">
       <div class="flex items-center gap-2 text-ctp-subtext0 text-sm mb-2 font-mono">
         <span class="text-ctp-green">~</span>
         <span>/about</span>
       </div>
-      <h1 class="text-4xl font-bold text-ctp-text mb-4">About Me</h1>
-      <p class="text-ctp-subtext1 text-lg leading-relaxed">
+      <h1 class="text-3xl md:text-4xl font-bold text-ctp-text mb-4">About Me</h1>
+      <p class="text-ctp-subtext1 text-base md:text-lg leading-relaxed">
         Leadership and strategic thinking are what make me invaluable, but it all begins with a 
         deep foundation in software engineering. I've spent nearly two decades building systems, 
         leading teams, and turning complex technical challenges into elegant solutions.
@@ -41,11 +41,11 @@ const values = [
 
     <!-- Philosophy Section -->
     <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
         <span class="text-ctp-green font-mono text-sm">##</span>
         Philosophy
       </h2>
-      <div class="grid md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {values.map((value) => (
           <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1 hover:border-ctp-surface2 transition-colors">
             <h3 class="text-ctp-peach font-medium mb-2">{value.title}</h3>
@@ -57,17 +57,17 @@ const values = [
 
     <!-- Experience Timeline -->
     <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
         <span class="text-ctp-green font-mono text-sm">##</span>
         Experience
       </h2>
       <div class="space-y-4">
         {experience.map((exp, i) => (
-          <div class="flex items-start gap-4 p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
-            <div class="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-ctp-green"></div>
+          <div class="flex flex-col md:flex-row md:items-start gap-2 md:gap-4 p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+            <div class="hidden md:block flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-ctp-green"></div>
             <div class="flex-1">
-              <div class="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 class="text-ctp-text font-medium">{exp.role}</h3>
+              <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 md:gap-2">
+                <h3 class="text-ctp-text font-medium text-lg md:text-base">{exp.role}</h3>
                 <span class="text-ctp-subtext0 text-sm font-mono">{exp.period}</span>
               </div>
               <p class="text-ctp-blue">{exp.company}</p>
@@ -82,11 +82,11 @@ const values = [
 
     <!-- Certifications -->
     <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
         <span class="text-ctp-green font-mono text-sm">##</span>
         Certifications
       </h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {certifications.map((cert) => (
           <div class="p-3 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1 hover:border-ctp-surface2 transition-colors">
             <p class="text-ctp-text text-sm font-medium">{cert.name}</p>
@@ -98,7 +98,7 @@ const values = [
 
     <!-- Education -->
     <section class="mb-12">
-      <h2 class="text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
         <span class="text-ctp-green font-mono text-sm">##</span>
         Education
       </h2>

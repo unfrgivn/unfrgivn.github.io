@@ -111,11 +111,11 @@ export default function CommandPalette({ projects = [] }: Props) {
 
   return (
     <div 
-      className="fixed inset-0 bg-ctp-crust/80 backdrop-blur-sm flex items-start justify-center pt-[20vh] z-[100]"
+      className="fixed inset-0 bg-ctp-crust/80 backdrop-blur-sm flex items-start justify-center pt-4 md:pt-[20vh] z-[100]"
       onClick={() => setIsOpen(false)}
     >
       <div 
-        className="w-full max-w-xl bg-ctp-base border border-ctp-surface1 rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+        className="w-full max-w-xl mx-4 md:mx-0 bg-ctp-base border border-ctp-surface1 rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center gap-3 px-4 py-3 border-b border-ctp-surface1">
