@@ -37,6 +37,17 @@ const SKILLS = [
   { name: 'Communication', value: 95, color: 'text-ctp-teal' },
 ];
 
+const PROCESSES = [
+  { pid: 8921, user: 'brad', pri: -20, state: 'S', time: '4y1m', command: 'Architected event-driven system handling $2B+ transactions', slug: 'subscription-api' },
+  { pid: 1192, user: 'brad', pri: -15, state: 'S', time: '2y8m', command: 'Led migration to microservices architecture', slug: 'metamorphosisjs' },
+  { pid: 4521, user: 'brad', pri: -10, state: 'S', time: '1y2m', command: 'Built real-time data pipeline processing 1M+ events/sec', slug: 'ksqldb-modeling' },
+  { pid: 8823, user: 'brad', pri: -5,  state: 'S', time: '8m',   command: 'Reduced deployment time from 2 hours to 5 minutes', slug: 'automated-qa-deployments' },
+  { pid: 3391, user: 'brad', pri: 0,   state: 'R', time: '5y+',  command: 'Mentored 12 engineers to senior level' },
+  { pid: 5612, user: 'brad', pri: 0,   state: 'S', time: '1y6m', command: 'Designed identity platform serving 50M users', slug: 'identity-guardrail' },
+  { pid: 7234, user: 'brad', pri: 0,   state: 'S', time: '9m',   command: 'Created internal developer SDK used by 200+ engineers', slug: 'internal-developer-sdk' },
+  { pid: 9102, user: 'brad', pri: 0,   state: 'S', time: '2y',   command: 'Established SRE practices reducing incidents by 70%', slug: 'cloud-paas' },
+];
+
 export default function TerminalHome() {
   const [typedCommand, setTypedCommand] = useState('');
   const [cursorVisible, setCursorVisible] = useState(true);
@@ -114,20 +125,57 @@ export default function TerminalHome() {
               </div>
             </div>
 
-            <div className="bg-ctp-surface0/30 p-4 rounded-md border border-ctp-surface1 animate-in fade-in duration-700 slide-in-from-right-4 delay-100">
-              <div className="flex justify-between items-center mb-4 border-b border-ctp-surface1 pb-2">
-                <span className="font-bold text-ctp-lavender">top - {new Date().toLocaleTimeString()}</span>
-                <span className="text-xs text-ctp-subtext0">load average: 1.88, 1.42, 1.15</span>
+            <div className="bg-ctp-surface0/30 p-4 rounded-md border border-ctp-surface1 animate-in fade-in duration-700 slide-in-from-right-4 delay-100 flex flex-col gap-5">
+              <div className="flex justify-between items-center border-b border-ctp-surface1 pb-2">
+                <span className="font-bold text-ctp-lavender">btop++ - {new Date().toLocaleTimeString()}</span>
+                <span className="text-xs text-ctp-subtext0 hidden sm:inline">load average: 2.15, 1.85, 1.42</span>
               </div>
               
-              <div className="space-y-3">
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between text-xs font-bold uppercase text-ctp-overlay1">
+                  <span>Career Velocity</span>
+                  <div className="flex gap-3">
+                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-ctp-green rounded-full"></span>Impact</span>
+                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-ctp-blue rounded-full"></span>Prod</span>
+                  </div>
+                </div>
+                
+                <div className="h-24 flex items-end justify-between gap-1 sm:gap-2 px-1 border-b border-ctp-surface1 border-l border-ctp-surface1 bg-ctp-surface0/20 pt-4 pb-0 relative">
+                  <div className="absolute inset-0 flex flex-col justify-between opacity-10 pointer-events-none p-1">
+                    <div className="w-full h-px bg-ctp-text"></div>
+                    <div className="w-full h-px bg-ctp-text"></div>
+                    <div className="w-full h-px bg-ctp-text"></div>
+                  </div>
+
+                  {[
+                    { y: "'10", i: 20, p: 30 },
+                    { y: "'12", i: 30, p: 40 },
+                    { y: "'14", i: 45, p: 50 },
+                    { y: "'16", i: 50, p: 55 },
+                    { y: "'18", i: 65, p: 60 },
+                    { y: "'20", i: 75, p: 70 },
+                    { y: "'22", i: 85, p: 85 },
+                    { y: "'24", i: 95, p: 98 },
+                  ].map((d) => (
+                    <div key={d.y} className="flex flex-col items-center gap-0.5 flex-1 group">
+                      <div className="w-full max-w-[12px] sm:max-w-[16px] flex items-end justify-center gap-[1px] h-full">
+                        <div style={{ height: `${d.i}%` }} className="w-1.5 sm:w-2 bg-ctp-green opacity-80 group-hover:opacity-100 transition-all rounded-t-sm"></div>
+                        <div style={{ height: `${d.p}%` }} className="w-1.5 sm:w-2 bg-ctp-blue opacity-80 group-hover:opacity-100 transition-all rounded-t-sm"></div>
+                      </div>
+                      <span className="text-[9px] sm:text-[10px] text-ctp-overlay0 mt-1">{d.y}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {SKILLS.map((skill) => (
-                  <div key={skill.name} className="flex flex-col gap-1">
-                    <div className="flex justify-between text-xs uppercase tracking-wider">
+                  <div key={skill.name} className="flex flex-col gap-0.5">
+                    <div className="flex justify-between text-[10px] uppercase tracking-wider">
                       <span className={skill.color}>{skill.name}</span>
                       <span className="text-ctp-subtext0">{skill.value}%</span>
                     </div>
-                    <div className="h-2 bg-ctp-surface1 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-ctp-surface1 rounded-full overflow-hidden">
                       <div 
                         className={`h-full ${skill.color.replace('text-', 'bg-')} transition-all duration-1000 ease-out`}
                         style={{ width: `${skill.value}%` }}
@@ -137,18 +185,44 @@ export default function TerminalHome() {
                 ))}
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-ctp-surface1">
-                <div className="flex flex-col items-center p-2 bg-ctp-surface0/50 rounded">
-                  <span className="text-xs text-ctp-subtext0 uppercase mb-1">Tasks</span>
-                  <span className="text-xl font-bold text-ctp-green">142 total</span>
-                  <span className="text-xs text-ctp-blue">1 running</span>
+              <div className="flex gap-4 border-t border-ctp-surface1 pt-3">
+                <div className="flex-1 flex justify-between items-center bg-ctp-surface0/40 px-3 py-2 rounded text-xs">
+                  <span className="text-ctp-subtext0">TASKS</span>
+                  <span className="font-bold text-ctp-green">142 total, 1 running</span>
                 </div>
-                <div className="flex flex-col items-center p-2 bg-ctp-surface0/50 rounded">
-                  <span className="text-xs text-ctp-subtext0 uppercase mb-1">Memory</span>
-                  <span className="text-xl font-bold text-ctp-mauve">16.4G</span>
-                  <span className="text-xs text-ctp-overlay1">used</span>
+                <div className="flex-1 flex justify-between items-center bg-ctp-surface0/40 px-3 py-2 rounded text-xs">
+                  <span className="text-ctp-subtext0">MEM</span>
+                  <span className="font-bold text-ctp-mauve">16.4G / 32G</span>
                 </div>
               </div>
+
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between text-[10px] font-bold text-ctp-text bg-ctp-surface1 py-1 px-2 rounded-t">
+                  <span className="w-10">PID</span>
+                  <span className="w-12 hidden sm:inline-block">USER</span>
+                  <span className="w-8 text-right hidden sm:inline-block">PRI</span>
+                  <span className="w-8 text-center">ST</span>
+                  <span className="w-12 text-right">TIME</span>
+                  <span className="flex-1 pl-4">COMMAND</span>
+                </div>
+                <div className="flex flex-col text-[10px] sm:text-xs font-mono max-h-48 overflow-y-auto scrollbar-hide">
+                  {PROCESSES.map((proc, i) => (
+                    <a 
+                      key={proc.pid} 
+                      href={proc.slug ? `/projects/${proc.slug}` : undefined}
+                      className={`flex justify-between py-1 px-2 ${i % 2 === 0 ? 'bg-ctp-surface0/20' : 'bg-transparent'} hover:bg-ctp-surface1/30 transition-colors cursor-default block ${proc.slug ? 'cursor-pointer hover:bg-ctp-surface1/50' : ''}`}
+                    >
+                      <span className="w-10 text-ctp-green">{proc.pid}</span>
+                      <span className="w-12 text-ctp-yellow hidden sm:inline-block">{proc.user}</span>
+                      <span className={`w-8 text-right hidden sm:inline-block ${proc.pri < 0 ? 'text-ctp-red' : 'text-ctp-subtext0'}`}>{proc.pri}</span>
+                      <span className="w-8 text-center text-ctp-subtext0">{proc.state}</span>
+                      <span className="w-12 text-right text-ctp-peach">{proc.time}</span>
+                      <span className="flex-1 pl-4 truncate text-ctp-text opacity-90" title={proc.command}>{proc.command}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </div>
 
