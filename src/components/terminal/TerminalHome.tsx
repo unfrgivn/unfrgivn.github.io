@@ -114,45 +114,76 @@ export default function TerminalHome() {
           <div className="opacity-50 text-[10px]">/usr/bin/zsh</div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 md:p-6 font-mono text-sm md:text-base scrollbar-hide">
+        <div className="flex-1 overflow-hidden p-4 md:p-6 font-mono text-sm md:text-base">
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 mb-8 md:mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 h-full">
             
-            <div className="flex flex-col gap-4 animate-in fade-in duration-700 slide-in-from-left-4">
-              <pre className="text-ctp-blue font-bold text-[6px] sm:text-[8px] md:text-[10px] leading-none select-none overflow-x-auto">
+            <div className="flex flex-col gap-4 h-full">
+              <div className="flex-1 flex flex-col gap-4 animate-in fade-in duration-700 slide-in-from-left-4 bg-ctp-surface0/20 p-4 rounded-md border border-ctp-surface1">
+                <pre className="text-ctp-blue font-bold text-[6px] sm:text-[8px] md:text-[10px] leading-none select-none overflow-x-auto">
 {ASCII_BANNER}
-              </pre>
-              
-              <div className="h-px bg-ctp-surface1 w-full"></div>
-              
-              <div className="space-y-1">
-                <div className="flex gap-2">
-                  <span className="text-ctp-blue min-w-[100px]">OS</span>
-                  <span className="text-ctp-text opacity-90">{getOSVersion()}</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-ctp-blue min-w-[100px]">Uptime</span>
-                  <span className="text-ctp-text opacity-90">{getUptime()}</span>
-                </div>
-                {FASTFETCH_DATA.map((item) => (
-                  <div key={item.label} className="flex gap-2">
-                    <span className="text-ctp-blue min-w-[100px]">{item.label}</span>
-                    <span className="text-ctp-text opacity-90">{item.value}</span>
+                </pre>
+                
+                <div className="h-px bg-ctp-surface1 w-full"></div>
+                
+                <div className="space-y-1 flex-1">
+                  <div className="flex gap-2">
+                    <span className="text-ctp-blue min-w-[100px]">OS</span>
+                    <span className="text-ctp-text opacity-90">{getOSVersion()}</span>
                   </div>
-                ))}
+                  <div className="flex gap-2">
+                    <span className="text-ctp-blue min-w-[100px]">Uptime</span>
+                    <span className="text-ctp-text opacity-90">{getUptime()}</span>
+                  </div>
+                  {FASTFETCH_DATA.map((item) => (
+                    <div key={item.label} className="flex gap-2">
+                      <span className="text-ctp-blue min-w-[100px]">{item.label}</span>
+                      <span className="text-ctp-text opacity-90">{item.value}</span>
+                    </div>
+                  ))}
 
-                <div className="flex gap-2 mt-4 pt-2">
-                  <div className="w-8 h-4 bg-ctp-red rounded-sm"></div>
-                  <div className="w-8 h-4 bg-ctp-green rounded-sm"></div>
-                  <div className="w-8 h-4 bg-ctp-yellow rounded-sm"></div>
-                  <div className="w-8 h-4 bg-ctp-blue rounded-sm"></div>
-                  <div className="w-8 h-4 bg-ctp-mauve rounded-sm"></div>
-                  <div className="w-8 h-4 bg-ctp-teal rounded-sm"></div>
+                  <div className="flex gap-2 mt-4 pt-2">
+                    <div className="w-8 h-4 bg-ctp-red rounded-sm"></div>
+                    <div className="w-8 h-4 bg-ctp-green rounded-sm"></div>
+                    <div className="w-8 h-4 bg-ctp-yellow rounded-sm"></div>
+                    <div className="w-8 h-4 bg-ctp-blue rounded-sm"></div>
+                    <div className="w-8 h-4 bg-ctp-mauve rounded-sm"></div>
+                    <div className="w-8 h-4 bg-ctp-teal rounded-sm"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-ctp-surface0/20 p-4 rounded-md border border-ctp-surface1 animate-in fade-in duration-500 delay-500">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2 text-lg md:text-xl">
+                    <span className="text-ctp-green font-bold">➜</span>
+                    <span className="text-ctp-blue font-bold">~</span>
+                    <a 
+                      href="/projects" 
+                      className="group flex items-center gap-2 text-ctp-text hover:text-ctp-blue transition-colors outline-none"
+                    >
+                      <span>{typedCommand}</span>
+                      <span className={`block w-2.5 h-5 bg-ctp-text ${cursorVisible ? 'opacity-100' : 'opacity-0'}`}></span>
+                    </a>
+                  </div>
+                  
+                  <div className="pl-6 md:pl-8 text-ctp-overlay1 text-sm md:text-base italic">
+                    # Press Enter to explore my work...
+                  </div>
+
+                  <div className="md:hidden mt-4">
+                    <a 
+                      href="/projects"
+                      className="block w-full py-3 bg-ctp-blue text-ctp-base font-bold text-center rounded shadow-lg hover:bg-ctp-sapphire transition-colors"
+                    >
+                      ENTER SYSTEM
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-ctp-surface0/30 p-4 rounded-md border border-ctp-surface1 animate-in fade-in duration-700 slide-in-from-right-4 delay-100 flex flex-col gap-5">
+            <div className="bg-ctp-surface0/30 p-4 rounded-md border border-ctp-surface1 animate-in fade-in duration-700 slide-in-from-right-4 delay-100 flex flex-col gap-4 h-full overflow-hidden">
               <div className="flex justify-between items-center border-b border-ctp-surface1 pb-2">
                 <span className="font-bold text-ctp-lavender">btop++ - {new Date().toLocaleTimeString()}</span>
                 <span className="text-xs text-ctp-subtext0 hidden sm:inline">load average: 2.15, 1.85, 1.42</span>
@@ -223,7 +254,7 @@ export default function TerminalHome() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 flex-1 min-h-0">
                 <div className="flex justify-between text-[10px] font-bold text-ctp-text bg-ctp-surface1 py-1 px-2 rounded-t">
                   <span className="w-10">PID</span>
                   <span className="w-12 hidden sm:inline-block">USER</span>
@@ -232,7 +263,7 @@ export default function TerminalHome() {
                   <span className="w-12 text-right">TIME</span>
                   <span className="flex-1 pl-4">COMMAND</span>
                 </div>
-                <div className="flex flex-col text-[10px] sm:text-xs font-mono max-h-48 overflow-y-auto scrollbar-hide">
+                <div className="flex flex-col text-[10px] sm:text-xs font-mono flex-1 overflow-y-auto scrollbar-hide">
                   {PROCESSES.map((proc, i) => (
                     <a 
                       key={proc.pid} 
@@ -250,35 +281,6 @@ export default function TerminalHome() {
                 </div>
               </div>
 
-            </div>
-          </div>
-
-          <div className="mt-auto pt-8 md:pt-12 pb-4 animate-in fade-in duration-500 delay-500">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-2 text-lg md:text-xl">
-                <span className="text-ctp-green font-bold">➜</span>
-                <span className="text-ctp-blue font-bold">~</span>
-                <a 
-                  href="/projects" 
-                  className="group flex items-center gap-2 text-ctp-text hover:text-ctp-blue transition-colors outline-none"
-                >
-                  <span>{typedCommand}</span>
-                  <span className={`block w-2.5 h-5 bg-ctp-text ${cursorVisible ? 'opacity-100' : 'opacity-0'}`}></span>
-                </a>
-              </div>
-              
-              <div className="pl-6 md:pl-8 text-ctp-overlay1 text-sm md:text-base italic mt-2">
-                # Click to explore my work...
-              </div>
-
-              <div className="md:hidden mt-6">
-                <a 
-                  href="/projects"
-                  className="block w-full py-3 bg-ctp-blue text-ctp-base font-bold text-center rounded shadow-lg hover:bg-ctp-sapphire transition-colors"
-                >
-                  ENTER SYSTEM
-                </a>
-              </div>
             </div>
           </div>
         </div>
