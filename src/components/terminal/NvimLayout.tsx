@@ -456,7 +456,8 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
               {node.type === 'folder' ? (
                 node.isOpen ? (
                   <svg className="w-4 h-4 text-ctp-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6.5l-2-2H5a2 2 0 00-2 2z" />
+                    <path d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h6a2 2 0 012 2v1" />
+                    <path d="M5 19h14a2 2 0 002-2l-2-7H7l-2 7a2 2 0 002 2z" />
                   </svg>
                 ) : (
                   <svg className="w-4 h-4 text-ctp-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
