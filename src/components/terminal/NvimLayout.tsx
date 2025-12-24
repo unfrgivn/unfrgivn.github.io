@@ -81,6 +81,27 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
     return Array.from(tags).sort();
   }, [projects]);
   
+  const getHashFromFileId = (fileId: string): string => {
+    if (fileId === 'root-about') return 'about';
+    if (fileId === 'root-contact') return 'contact';
+    if (fileId.startsWith('project-')) return fileId.replace('project-', '');
+    return '';
+  };
+
+  const getFileIdFromHash = (hash: string): string => {
+    if (!hash) return '';
+    if (hash === 'about') return 'root-about';
+    if (hash === 'contact') return 'root-contact';
+    return `project-${hash}`;
+  };
+
+  const updateHash = (fileId: string) => {
+    const hash = getHashFromFileId(fileId);
+    if (hash) {
+      window.history.replaceState(null, '', `#${hash}`);
+    }
+  };
+
   useEffect(() => {
     const tree: FileNode[] = [
       {
@@ -246,9 +267,7 @@ Currently exploring:
     
     const hash = window.location.hash.replace('#/', '').replace('#', '');
     if (hash) {
-      const fileId = hash === 'about' ? 'root-about' : 
-                     hash === 'contact' ? 'root-contact' :
-                     `project-${hash}`;
+      const fileId = getFileIdFromHash(hash);
       setSelectedFileId(fileId);
       setOpenFileId(fileId);
       setActivePane('content');
@@ -258,6 +277,21 @@ Currently exploring:
       setSelectedFileId(tree[0].id);
     }
   }, [projects]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#/', '').replace('#', '');
+      if (hash) {
+        const fileId = getFileIdFromHash(hash);
+        setSelectedFileId(fileId);
+        setOpenFileId(fileId);
+        setActivePane('content');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const [lastKey, setLastKey] = useState<{key: string, time: number} | null>(null);
   const [command, setCommand] = useState('');
@@ -476,6 +510,7 @@ Currently exploring:
         toggleFolder(node.id);
       } else {
         setOpenFileId(node.id);
+        updateHash(node.id);
         setActivePane('content');
       }
     } else if (key === 'h' || key === 'ArrowLeft') {
@@ -564,6 +599,7 @@ Currently exploring:
               setSelectedFileId(node.id);
               if (node.type === 'file') {
                 setOpenFileId(node.id);
+                updateHash(node.id);
                 if (isMobile) setActivePane('content');
               } else {
                 toggleFolder(node.id);
