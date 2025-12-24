@@ -82,7 +82,7 @@ const SOCIAL_LINKS = [
   { name: 'LinkedIn', url: 'https://linkedin.com/in/bradash', icon: '󰌻', color: 'text-ctp-blue' },
   { name: 'Email', url: 'mailto:brad@yoursite.com', icon: '󰇮', color: 'text-ctp-green' },
   { name: 'Resume', url: '/brad_ash_resume.pdf', icon: '󰈙', color: 'text-ctp-peach' },
-  { name: 'About Me', url: '/projects?file=about', icon: '󰀄', color: 'text-ctp-lavender' },
+  { name: 'About Me', url: '/projects#about', icon: '󰀄', color: 'text-ctp-lavender' },
 ];
 
 export default function TerminalHome({ processes }: TerminalHomeProps) {

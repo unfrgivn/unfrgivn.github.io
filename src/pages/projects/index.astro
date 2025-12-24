@@ -12,12 +12,10 @@ const projectsData = sortedProjects.map(p => ({
   data: p.data,
   body: p.body
 }));
-
-const initialFile = Astro.url.searchParams.get('file') || undefined;
 ---
 
 <Layout title="Projects | Brad Ash" description="Interactive terminal project explorer." fullscreen={true}>
-  <NvimLayout projects={projectsData} initialFile={initialFile} client:only="react" />
+  <NvimLayout projects={projectsData} client:only="react" />
 </Layout>
 
 <style is:global>
