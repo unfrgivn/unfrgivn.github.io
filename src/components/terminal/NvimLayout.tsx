@@ -104,15 +104,40 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
         path: '/about.md',
         content: { 
           data: { 
-            title: 'About Me', 
-            role: 'Senior Engineer',
-            company: 'Self',
-            tech: ['React', 'TypeScript', 'Node.js', 'Rust', 'Go'],
-            domains: ['Frontend', 'Backend', 'DevOps'],
-            summary: "I'm a designer-turned-developer with a passion for building beautiful, functional software.",
+            title: 'Brad Ash', 
+            role: 'VP of Engineering',
+            company: '20+ Years Experience',
+            tech: ['TypeScript', 'Python', 'Go', 'React', 'Node.js', 'AWS', 'GCP', 'Kubernetes', 'Terraform'],
+            domains: ['Platform Engineering', 'Cloud Architecture', 'Data Engineering', 'Team Leadership'],
+            summary: "Engineering leader with 20+ years building high-performance teams and scalable platforms. I transform complex technical challenges into business value.",
             icon: ''
           },
-          body: "I build software that matters. With a background in design and years of engineering experience, I bridge the gap between aesthetics and functionality."
+          body: `## Experience Highlights
+
+**Wpromote** — VP of Engineering (2022-2024)
+- Led development of Polaris, a unified marketing intelligence SaaS platform
+- Achieved $1.5M+ annual cloud savings through FinOps optimization
+- Scaled engineering team from 12 to 28 engineers across 4 product teams
+
+**lululemon** — Principal Engineer (2018-2022)
+- Architected event-driven checkout system processing $2B+ annually
+- Reduced data pipeline latency from 24hrs to 15min using Kafka/ksqlDB
+- Built identity platform serving 30M+ guest profiles
+
+**Capitol Information Group** — VP Engineering / CTO (2006-2018)
+- Grew engineering org from 3 to 35+ across 6 Scrum teams
+- Led technical due diligence for 4 acquisitions
+- Pioneered digital transformation from print to SaaS
+
+---
+
+## Currently Exploring
+
+- AI/ML Integration & LLM Applications
+- Platform Engineering & Developer Experience
+- Fractional/Advisory Engineering Leadership
+
+[View full profile →](/about)`
         }
       },
       {
@@ -123,11 +148,25 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
         content: {
           data: {
             title: 'Contact',
-            role: 'Human',
-            summary: 'Get in touch',
+            role: 'Let\'s Connect',
+            summary: 'Open to new opportunities and collaborations',
             icon: ''
           },
-          body: "Find me on GitHub at github.com/unfrgivn or email me."
+          body: `## Get In Touch
+
+- **Email:** brad@yourmail.com
+- **GitHub:** [github.com/unfrgivn](https://github.com/unfrgivn)
+- **LinkedIn:** [linkedin.com/in/bradash](https://linkedin.com/in/bradash)
+
+---
+
+### Availability
+
+Currently exploring:
+- Full-time VP/Director of Engineering roles
+- Fractional engineering leadership
+- Technical advisory positions
+- Board positions for tech startups`
         }
       }
     ];
