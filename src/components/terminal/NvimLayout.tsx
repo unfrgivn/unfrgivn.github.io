@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 
 type VimMode = 'NORMAL' | 'INSERT' | 'VISUAL' | 'COMMAND';
 
@@ -59,6 +59,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
   const [cursorPos, setCursorPos] = useState({ line: 1, col: 1 });
   const [showHelp, setShowHelp] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
   
   const [showTechFilter, setShowTechFilter] = useState(false);
   const [activeTechFilters, setActiveTechFilters] = useState<string[]>([]);
@@ -292,6 +293,12 @@ Currently exploring:
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+  }, [openFileId]);
 
   const [lastKey, setLastKey] = useState<{key: string, time: number} | null>(null);
   const [command, setCommand] = useState('');
@@ -746,6 +753,7 @@ Currently exploring:
           <div 
             id="main-content"
             className={`flex-1 flex flex-col bg-ctp-base overflow-y-auto relative outline-none ${activePane === 'content' ? 'flex' : 'opacity-90 hidden md:flex'}`}
+        ref={contentRef}
             tabIndex={0}
           >
             {activeFile && activeFile.content ? (
