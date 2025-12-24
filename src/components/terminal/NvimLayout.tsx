@@ -14,6 +14,7 @@ interface FileNode {
 
 interface NvimLayoutProps {
   projects: any[];
+  initialFile?: string;
 }
 
 function parseMarkdown(md: string): string {
@@ -50,7 +51,7 @@ function parseMarkdown(md: string): string {
   return html;
 }
 
-export default function NvimLayout({ projects }: NvimLayoutProps) {
+export default function NvimLayout({ projects, initialFile }: NvimLayoutProps) {
   const [mode, setMode] = useState<VimMode>('NORMAL');
   const [activePane, setActivePane] = useState<'tree' | 'content'>('tree');
   const [fileTree, setFileTree] = useState<FileNode[]>([]);
@@ -109,35 +110,106 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
             company: '20+ Years Experience',
             tech: ['TypeScript', 'Python', 'Go', 'React', 'Node.js', 'AWS', 'GCP', 'Kubernetes', 'Terraform'],
             domains: ['Platform Engineering', 'Cloud Architecture', 'Data Engineering', 'Team Leadership'],
-            summary: "Engineering leader with 20+ years building high-performance teams and scalable platforms. I transform complex technical challenges into business value.",
+            summary: "Engineering leader with 20+ years building high-performance teams and scalable platforms. I transform complex technical challenges into business value—whether scaling systems to handle billions in transactions or growing engineering orgs from startup to enterprise.",
             icon: ''
           },
-          body: `## Experience Highlights
+          body: `## Career Journey
 
-**Wpromote** — VP of Engineering (2022-2024)
-- Led development of Polaris, a unified marketing intelligence SaaS platform
-- Achieved $1.5M+ annual cloud savings through FinOps optimization
+**2024** — Wpromote (VP Engineering)
+**2023** — lululemon (Director Engineering)  
+**2020** — Capitol Information Group (CTO)
+**2017** — Capitol Information Group (VP Engineering)
+**2016** — Fruitful Fertility (Co-founder/CTO)
+**2014** — Baton Investing (Co-founder)
+**2006** — Capitol Information Group (Engineer)
+
+---
+
+## Experience
+
+### Wpromote — VP of Engineering (2022-2024)
+
+Led engineering for Polaris, a unified marketing intelligence SaaS platform integrating data from 50+ marketing channels.
+
+- Evolved Polaris platform to client-facing SaaS with 87% adoption across 100+ enterprise clients
+- Achieved $1.5M+ annual cloud savings through FinOps optimization and architecture improvements
 - Scaled engineering team from 12 to 28 engineers across 4 product teams
+- Secured $550k in partner funding from Google/Meta/TikTok through strategic alliances
+- Drove 50% throughput gain and 71 eNPS through process improvements
 
-**lululemon** — Principal Engineer (2018-2022)
-- Architected event-driven checkout system processing $2B+ annually
-- Reduced data pipeline latency from 24hrs to 15min using Kafka/ksqlDB
-- Built identity platform serving 30M+ guest profiles
+**Related Projects:** [Polaris SaaS Platform](/projects?file=cloud-paas), [FinOps Optimization](/projects?file=shared-development-toolkit)
 
-**Capitol Information Group** — VP Engineering / CTO (2006-2018)
-- Grew engineering org from 3 to 35+ across 6 Scrum teams
-- Led technical due diligence for 4 acquisitions
-- Pioneered digital transformation from print to SaaS
+---
+
+### lululemon — Principal Engineer / Director (2018-2022)
+
+Architected enterprise-scale systems for global retail operations.
+
+- Built event-driven checkout system processing $2B+ in annual transactions
+- Reduced data pipeline latency from 24 hours to 15 minutes using Kafka/ksqlDB
+- Designed identity platform serving 30M+ guest profiles with 99.99% uptime
+- Led AWS/Azure enterprise architecture for $10B global retailer
+
+**Related Projects:** [Checkout Flow](/projects?file=checkout-flow), [Identity Platform](/projects?file=identity-guardrail), [ksqlDB Pipelines](/projects?file=ksqldb-modeling)
+
+---
+
+### Capitol Information Group — VP Engineering / CTO (2006-2018)
+
+12-year journey from engineer to CTO, driving digital transformation.
+
+- Grew engineering organization from 3 to 35+ across 6 Scrum teams
+- Led technical due diligence for 4 acquisitions, paid off acquisition debt 1 year early
+- Pioneered digital transformation from print publishing to SaaS products
+- Drove innovation for 5 publishers (2M subscribers, $50M revenue)
+
+**Related Projects:** [Publisher Platform](/projects?file=publisher-platform), [Subscription API](/projects?file=subscription-api), [Marketing CMS](/projects?file=marketing-cms)
+
+---
+
+## Startups
+
+### Fruitful Fertility — Co-founder & CTO (2016-2018)
+Built iOS/Android fertility tracking app from concept to 10K+ users. Led development of React Native mobile app with ML-based cycle predictions.
+
+### Baton Investing — Co-founder (2014-2016)
+Developed social investing platform connecting novice investors with mentors. Built real-time portfolio tracking and social features.
+
+---
+
+## What People Say
+
+> "Brad combines deep technical expertise with exceptional leadership. He built our platform from scratch and mentored the entire team to senior level."
+> — **Former Direct Report, lululemon**
+
+> "One of the most strategic engineering leaders I've worked with. Brad sees both the technical details and the big picture."
+> — **Product Partner, Wpromote**
 
 ---
 
 ## Currently Exploring
 
-- AI/ML Integration & LLM Applications
-- Platform Engineering & Developer Experience
-- Fractional/Advisory Engineering Leadership
+- **AI/ML Integration** — LLM applications, intelligent automation
+- **Platform Engineering** — Developer experience, internal tooling
+- **Fractional/Advisory** — Engineering leadership for growing companies
 
-[View full profile →](/about)`
+---
+
+## Certifications
+
+- AWS Solutions Architect Professional
+- GCP Professional Cloud Architect  
+- Kubernetes Administrator (CKA)
+- Terraform Associate
+
+---
+
+## Get In Touch
+
+- **Email:** brad@unfrgivn.com
+- **GitHub:** [github.com/unfrgivn](https://github.com/unfrgivn)
+- **LinkedIn:** [linkedin.com/in/bradash](https://linkedin.com/in/bradash)
+- **Resume:** [Download PDF](/brad_ash_resume.pdf)`
         }
       },
       {
@@ -173,12 +245,19 @@ Currently exploring:
     
     setFileTree(tree);
     
-    if (tree[0].children && tree[0].children.length > 0) {
+    if (initialFile) {
+      const fileId = initialFile === 'about' ? 'root-about' : 
+                     initialFile === 'contact' ? 'root-contact' :
+                     `project-${initialFile}`;
+      setSelectedFileId(fileId);
+      setOpenFileId(fileId);
+      setActivePane('content');
+    } else if (tree[0].children && tree[0].children.length > 0) {
       setSelectedFileId(tree[0].children[0].id);
     } else {
       setSelectedFileId(tree[0].id);
     }
-  }, [projects]);
+  }, [projects, initialFile]);
 
   const [lastKey, setLastKey] = useState<{key: string, time: number} | null>(null);
   const [command, setCommand] = useState('');
