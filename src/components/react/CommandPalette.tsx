@@ -25,6 +25,7 @@ export default function CommandPalette({ projects = [] }: Props) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   const allCommands: CommandItem[] = [
     ...STATIC_COMMANDS,
@@ -68,6 +69,26 @@ export default function CommandPalette({ projects = [] }: Props) {
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (listRef.current && selectedIndex >= 0) {
+      const items = listRef.current.querySelectorAll('button');
+      items[selectedIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [selectedIndex]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     switch (e.key) {
@@ -134,7 +155,7 @@ export default function CommandPalette({ projects = [] }: Props) {
           <kbd className="px-2 py-0.5 text-xs bg-ctp-surface0 text-ctp-subtext0 rounded font-mono border border-ctp-surface1">esc</kbd>
         </div>
 
-        <div className="max-h-80 overflow-y-auto custom-scrollbar">
+        <div ref={listRef} className="max-h-80 overflow-y-auto custom-scrollbar">
           {filteredCommands.length === 0 ? (
             <div className="px-4 py-12 text-center text-ctp-subtext0">
               No results found
