@@ -3,12 +3,22 @@ import Layout from '../layouts/Layout.astro';
 import TerminalHome from '../components/terminal/TerminalHome';
 import { getCollection } from 'astro:content';
 
-const allProjects = await getCollection('projects');
-const projects = allProjects;
+const allHighlights = await getCollection('highlights');
+const highlights = allHighlights
+  .sort((a, b) => a.data.order - b.data.order)
+  .map(h => ({
+    pid: h.data.pid,
+    user: 'brad',
+    pri: h.data.priority,
+    state: h.data.state,
+    time: h.data.time,
+    command: h.data.command,
+    slug: h.data.projectSlug,
+  }));
 ---
 
 <Layout title="Brad Ash | Portfolio" fullscreen={true}>
-  <TerminalHome client:load />
+  <TerminalHome client:load processes={highlights} />
 </Layout>
 
 <style is:global>
