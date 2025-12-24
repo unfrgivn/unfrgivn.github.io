@@ -304,7 +304,7 @@ Currently exploring:
   const [command, setCommand] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
-  const [lastEscTime, setLastEscTime] = useState<number>(0);
+  const lastEscTimeRef = useRef<number>(0);
   
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -348,17 +348,17 @@ Currently exploring:
       if (e.key === 'Escape') {
         if (showHelp) {
           setShowHelp(false);
-          setLastEscTime(0);
+          lastEscTimeRef.current = 0;
           return;
         }
 
         if (mode === 'NORMAL') {
           const now = Date.now();
-          if (now - lastEscTime < 500) {
+          if (now - lastEscTimeRef.current < 500) {
             window.location.href = '/';
             return;
           }
-          setLastEscTime(now);
+          lastEscTimeRef.current = now;
         } else {
           setMode('NORMAL');
         }
@@ -443,7 +443,7 @@ Currently exploring:
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [mode, activePane, fileTree, selectedFileId, command, isSearching, searchQuery, lastKey, lastEscTime, showHelp]);
+  }, [mode, activePane, fileTree, selectedFileId, command, isSearching, searchQuery, lastKey, showHelp]);
 
   const hasMatch = (nodes: FileNode[], query: string): boolean => {
     return nodes.some(n => 
