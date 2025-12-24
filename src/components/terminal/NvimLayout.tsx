@@ -348,6 +348,7 @@ Currently exploring:
       if (e.key === 'Escape') {
         if (showHelp) {
           setShowHelp(false);
+          setLastEscTime(0);
           return;
         }
 
