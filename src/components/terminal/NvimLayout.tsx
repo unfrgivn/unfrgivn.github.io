@@ -394,6 +394,22 @@ Currently exploring:
         return;
       }
 
+      if (e.ctrlKey && e.key === 'f') {
+        e.preventDefault();
+        if (contentRef.current) {
+          contentRef.current.scrollBy({ top: contentRef.current.clientHeight, behavior: 'smooth' });
+        }
+        return;
+      }
+
+      if (e.ctrlKey && e.key === 'b') {
+        e.preventDefault();
+        if (contentRef.current) {
+          contentRef.current.scrollBy({ top: -contentRef.current.clientHeight, behavior: 'smooth' });
+        }
+        return;
+      }
+
       if (e.key === '?' && mode === 'NORMAL') {
         e.preventDefault();
         setShowHelp(true);
