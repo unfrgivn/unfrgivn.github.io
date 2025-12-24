@@ -972,6 +972,18 @@ Currently exploring:
                   <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">G</kbd> Go to bottom</p>
                   <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Enter</kbd> Open file</p>
                 </div>
+
+                <h3 className="text-ctp-peach font-semibold mb-2 mt-4">Scrolling</h3>
+                <div className="space-y-1 text-ctp-subtext0">
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Ctrl+f</kbd> Page down</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Ctrl+b</kbd> Page up</p>
+                </div>
+
+                <h3 className="text-ctp-peach font-semibold mb-2 mt-4">Panes</h3>
+                <div className="space-y-1 text-ctp-subtext0">
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Ctrl+h</kbd> Focus file tree</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Ctrl+l</kbd> Focus content</p>
+                </div>
               </div>
               
               <div>
@@ -987,8 +999,10 @@ Currently exploring:
                 <div className="space-y-1 text-ctp-subtext0">
                   <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">:</kbd> Command mode</p>
                   <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">:q</kbd> Go home</p>
-                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Esc</kbd> Normal mode</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Esc</kbd> Normal mode / Close help</p>
                   <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Esc Esc</kbd> Go home</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Ctrl+c</kbd> Go home</p>
+                  <p><kbd className="bg-ctp-surface0 px-1.5 py-0.5 rounded text-ctp-text">Ctrl+k</kbd> Command palette</p>
                 </div>
               </div>
             </div>
