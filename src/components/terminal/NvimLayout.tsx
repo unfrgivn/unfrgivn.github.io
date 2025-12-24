@@ -14,7 +14,6 @@ interface FileNode {
 
 interface NvimLayoutProps {
   projects: any[];
-  initialFile?: string;
 }
 
 function parseMarkdown(md: string): string {
@@ -51,7 +50,7 @@ function parseMarkdown(md: string): string {
   return html;
 }
 
-export default function NvimLayout({ projects, initialFile }: NvimLayoutProps) {
+export default function NvimLayout({ projects }: NvimLayoutProps) {
   const [mode, setMode] = useState<VimMode>('NORMAL');
   const [activePane, setActivePane] = useState<'tree' | 'content'>('tree');
   const [fileTree, setFileTree] = useState<FileNode[]>([]);
@@ -245,10 +244,11 @@ Currently exploring:
     
     setFileTree(tree);
     
-    if (initialFile) {
-      const fileId = initialFile === 'about' ? 'root-about' : 
-                     initialFile === 'contact' ? 'root-contact' :
-                     `project-${initialFile}`;
+    const hash = window.location.hash.replace('#/', '').replace('#', '');
+    if (hash) {
+      const fileId = hash === 'about' ? 'root-about' : 
+                     hash === 'contact' ? 'root-contact' :
+                     `project-${hash}`;
       setSelectedFileId(fileId);
       setOpenFileId(fileId);
       setActivePane('content');
@@ -257,7 +257,7 @@ Currently exploring:
     } else {
       setSelectedFileId(tree[0].id);
     }
-  }, [projects, initialFile]);
+  }, [projects]);
 
   const [lastKey, setLastKey] = useState<{key: string, time: number} | null>(null);
   const [command, setCommand] = useState('');
