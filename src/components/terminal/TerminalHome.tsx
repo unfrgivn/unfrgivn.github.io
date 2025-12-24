@@ -60,10 +60,10 @@ const FASTFETCH_DATA = [
 ];
 
 const SKILLS = [
-  { name: 'TypeScript/React', value: 98, color: 'text-ctp-blue' },
-  { name: 'Rust/Go', value: 92, color: 'text-ctp-mauve' },
+  { name: 'Object-Oriented Programming', value: 98, color: 'text-ctp-blue' },
+  { name: 'Product Design', value: 92, color: 'text-ctp-mauve' },
   { name: 'System Design', value: 88, color: 'text-ctp-green' },
-  { name: 'DevOps/K8s', value: 85, color: 'text-ctp-peach' },
+  { name: 'DevOps/Automation', value: 85, color: 'text-ctp-peach' },
   { name: 'Team Leadership', value: 90, color: 'text-ctp-yellow' },
   { name: 'Communication', value: 95, color: 'text-ctp-teal' },
 ];
