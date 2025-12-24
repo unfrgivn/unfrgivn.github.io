@@ -12,7 +12,7 @@ interface CommandItem {
 
 const STATIC_COMMANDS: CommandItem[] = [
   { id: 'home', title: 'Home', category: 'page', href: '/', icon: '🏠' },
-  { id: 'about', title: 'About', category: 'page', href: '/about', icon: '👤' },
+  { id: 'about', title: 'About', category: 'page', href: '/projects#about', icon: '👤' },
   { id: 'projects', title: 'Projects', category: 'page', href: '/projects', icon: '📁' },
 ];
 
@@ -33,7 +33,7 @@ export default function CommandPalette({ projects = [] }: Props) {
       title: p.title,
       subtitle: p.company,
       category: 'project' as const,
-      href: `/projects/${p.slug}`,
+      href: `/projects#${p.slug}`,
       icon: '📄',
     })),
   ];
