@@ -29,6 +29,21 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const highlightsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    command: z.string(),
+    pid: z.number(),
+    priority: z.number().default(0),
+    state: z.enum(['R', 'S', 'D', 'Z']).default('S'),
+    time: z.string(),
+    projectSlug: z.string().optional(),
+    company: z.string().optional(),
+    order: z.number().default(0),
+  }),
+});
+
 export const collections = {
   projects: projectsCollection,
+  highlights: highlightsCollection,
 };

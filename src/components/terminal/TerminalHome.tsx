@@ -1,5 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ThemeSwitcher from '../react/ThemeSwitcher';
+
+interface Process {
+  pid: number;
+  user: string;
+  pri: number;
+  state: string;
+  time: string;
+  command: string;
+  slug?: string;
+}
+
+interface TerminalHomeProps {
+  processes: Process[];
+}
 
 const ASCII_BANNER = `
  ██████╗ ██████╗ ███████╗███╗   ██╗    ██████╗ ██████╗  █████╗ ██████╗ 
@@ -70,18 +84,7 @@ const SOCIAL_LINKS = [
   { name: 'Resume', url: '/brad_ash_resume.pdf', icon: '󰈙', color: 'text-ctp-peach' },
 ];
 
-const PROCESSES = [
-  { pid: 8921, user: 'brad', pri: -20, state: 'S', time: '4y1m', command: 'Architected event-driven system handling $2B+ transactions', slug: 'subscription-api' },
-  { pid: 1192, user: 'brad', pri: -15, state: 'S', time: '2y8m', command: 'Led migration to microservices architecture', slug: 'metamorphosisjs' },
-  { pid: 4521, user: 'brad', pri: -10, state: 'S', time: '1y2m', command: 'Built real-time data pipeline processing 1M+ events/sec', slug: 'ksqldb-modeling' },
-  { pid: 8823, user: 'brad', pri: -5,  state: 'S', time: '8m',   command: 'Reduced deployment time from 2 hours to 5 minutes', slug: 'automated-qa-deployments' },
-  { pid: 3391, user: 'brad', pri: 0,   state: 'R', time: '5y+',  command: 'Mentored 12 engineers to senior level' },
-  { pid: 5612, user: 'brad', pri: 0,   state: 'S', time: '1y6m', command: 'Designed identity platform serving 50M users', slug: 'identity-guardrail' },
-  { pid: 7234, user: 'brad', pri: 0,   state: 'S', time: '9m',   command: 'Created internal developer SDK used by 200+ engineers', slug: 'internal-developer-sdk' },
-  { pid: 9102, user: 'brad', pri: 0,   state: 'S', time: '2y',   command: 'Established SRE practices reducing incidents by 70%', slug: 'cloud-paas' },
-];
-
-export default function TerminalHome() {
+export default function TerminalHome({ processes }: TerminalHomeProps) {
   const [typedCommand, setTypedCommand] = useState('');
   const [cursorVisible, setCursorVisible] = useState(true);
 
@@ -315,7 +318,7 @@ export default function TerminalHome() {
                   <span className="flex-1 pl-4">COMMAND</span>
                 </div>
                 <div className="flex flex-col text-[10px] sm:text-xs font-mono flex-1 overflow-y-auto scrollbar-hide">
-                  {PROCESSES.map((proc, i) => (
+                  {processes.map((proc, i) => (
                     <a 
                       key={proc.pid} 
                       href={proc.slug ? `/projects/${proc.slug}` : undefined}

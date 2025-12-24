@@ -1,5 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all projects to link them to experience
+const allProjects = await getCollection('projects');
+const projectsByCompany = allProjects.reduce((acc, project) => {
+  const company = project.data.company || 'Other';
+  if (!acc[company]) acc[company] = [];
+  acc[company].push({ slug: project.slug, title: project.data.title });
+  return acc;
+}, {} as Record<string, { slug: string; title: string }[]>);
 
 const experience = [
   {
@@ -13,6 +23,7 @@ const experience = [
       'Improved data freshness 400% (24h to 5h latency), reduced production incidents 32% and bugs 17%',
       'Led technical alliances with Google, Meta, TikTok securing $550k partner funding for AI-driven features',
     ],
+    projects: [] as { slug: string; title: string }[],
   },
   {
     company: 'lululemon',
@@ -24,6 +35,7 @@ const experience = [
       'Provided vision for best-in-class AWS/Azure platform services for $10B global retailer',
       'Drove compliance initiatives: SOC 2, PCI, CIS, and enterprise engineering RFCs',
     ],
+    projects: projectsByCompany['lululemon'] || [],
   },
   {
     company: 'Capitol Information Group',
@@ -34,6 +46,7 @@ const experience = [
       'Led M&A due diligence, identifying data insights that paid off acquisition debt a year early',
       'Migrated high-traffic services to AWS/GCP with federated data lakehouse architecture',
     ],
+    projects: projectsByCompany['Capitol Information Group'] || [],
   },
   {
     company: 'Capitol Information Group',
@@ -44,6 +57,7 @@ const experience = [
       'Doubled engineering headcount and established dedicated data engineering function',
       'Led 5-year roadmap to deprecate legacy monoliths in favor of microservices',
     ],
+    projects: [],
   },
   {
     company: 'Capitol Information Group',
@@ -52,6 +66,7 @@ const experience = [
     highlights: [
       'Promoted through ranks based on performance, leading adoption of open-source infrastructure, SDLC automation, TDD, and custom SaaS solutions',
     ],
+    projects: [],
   },
 ];
 
@@ -68,6 +83,31 @@ const startups = [
     period: '05/2014 - 10/2016',
     description: 'Incubated FinTech spin-off using Lean Startup methodology; maintained positive cost-to-revenue ratios.',
   },
+];
+
+const testimonials = [
+  {
+    quote: "Brad is one of the best leaders I've had the pleasure to work with. He combines deep technical expertise with genuine care for his team's growth. His ability to see both the forest and the trees is exceptional.",
+    author: "Engineering Director",
+    company: "Former Direct Report",
+  },
+  {
+    quote: "Working with Brad transformed how our team approached complex problems. He brings clarity to chaos and always finds a way to make things work, even under tight deadlines.",
+    author: "Product Manager",
+    company: "Cross-functional Partner",
+  },
+  {
+    quote: "Brad's technical vision and execution are top-notch. He successfully navigated our team through a major platform migration while keeping morale high and delivery on track.",
+    author: "VP of Product",
+    company: "Executive Peer",
+  },
+];
+
+const currentlyExploring = [
+  { area: 'AI/ML Engineering', description: 'Building agentic systems with LLMs, RAG architectures, and multi-modal AI applications' },
+  { area: 'Rust & Systems Programming', description: 'High-performance backend services and CLI tooling' },
+  { area: 'Platform Engineering', description: 'Internal developer platforms, golden paths, and DevEx optimization' },
+  { area: 'Fractional/Advisory Roles', description: 'Helping startups scale their engineering organizations and technical strategy' },
 ];
 
 const certifications = [
@@ -99,9 +139,51 @@ const community = [
 ];
 
 const strengths = ['Achiever', 'Command', 'Focus', 'Futuristic', 'Woo'];
+
+// Timeline data for visualization
+const timelineData = [
+  { year: 2006, company: 'CIG', role: 'Engineer', color: 'ctp-teal' },
+  { year: 2014, company: 'Baton', role: 'Founder', color: 'ctp-peach' },
+  { year: 2016, company: 'Fruitful', role: 'CTO', color: 'ctp-pink' },
+  { year: 2017, company: 'CIG', role: 'Director', color: 'ctp-teal' },
+  { year: 2020, company: 'CIG', role: 'CTO', color: 'ctp-teal' },
+  { year: 2023, company: 'lululemon', role: 'Director', color: 'ctp-red' },
+  { year: 2024, company: 'Wpromote', role: 'VP Eng', color: 'ctp-blue' },
+];
+
+// SEO metadata
+const title = "About Brad Ash | VP of Engineering & Technology Executive";
+const description = "Strategic technology executive with 20+ years scaling engineering teams, driving FinOps savings, and leading digital transformation. Expert in cloud platforms, AI/ML, and high-velocity engineering cultures.";
+const canonicalURL = new URL('/about', Astro.site || 'https://bradash.dev');
 ---
 
-<Layout title="About | Brad Ash">
+<Layout title={title}>
+  <Fragment slot="head">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content={description} />
+    <meta name="author" content="Brad Ash" />
+    <link rel="canonical" href={canonicalURL.toString()} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Brad Ash Portfolio" />
+    <meta property="profile:first_name" content="Brad" />
+    <meta property="profile:last_name" content="Ash" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL.toString()} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Additional SEO -->
+    <meta name="keywords" content="VP Engineering, CTO, Technology Executive, Cloud Platform, FinOps, Engineering Leadership, Digital Transformation, AWS, Azure, Kubernetes" />
+    <meta name="robots" content="index, follow" />
+  </Fragment>
+
   <div class="max-w-4xl mx-auto px-4 py-8 md:px-6 md:py-16">
     <!-- Terminal-style header -->
     <div class="mb-12">
@@ -117,6 +199,53 @@ const strengths = ['Achiever', 'Command', 'Focus', 'Futuristic', 'Woo'];
         unlocking delivery throughput, and architecting enterprise-grade software platforms.
       </p>
     </div>
+
+    <!-- Interactive Career Timeline -->
+    <section class="mb-12">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        Career Journey
+      </h2>
+      <div class="relative">
+        <!-- Timeline bar -->
+        <div class="absolute top-6 left-0 right-0 h-1 bg-ctp-surface1 rounded-full"></div>
+        
+        <!-- Timeline points -->
+        <div class="relative flex justify-between items-start px-2">
+          {timelineData.map((item, index) => (
+            <div class="flex flex-col items-center group cursor-pointer" style={`z-index: ${10 - index}`}>
+              <div class={`w-4 h-4 rounded-full bg-${item.color} border-2 border-ctp-base shadow-lg transition-transform group-hover:scale-125 relative z-10`}></div>
+              <div class="mt-3 text-center opacity-0 group-hover:opacity-100 transition-opacity absolute top-8 -translate-x-1/2 left-1/2 bg-ctp-surface0 border border-ctp-surface1 rounded-lg p-2 shadow-xl min-w-[100px]">
+                <p class="text-ctp-text font-medium text-sm">{item.company}</p>
+                <p class="text-ctp-subtext0 text-xs">{item.role}</p>
+                <p class="text-ctp-overlay0 text-xs">{item.year}</p>
+              </div>
+              <span class="mt-2 text-xs text-ctp-overlay0 font-mono">{String(item.year).slice(-2)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <p class="text-ctp-subtext0 text-xs text-center mt-8 italic">Hover over points to see details</p>
+    </section>
+
+    <!-- Currently Exploring -->
+    <section class="mb-12">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        Currently Exploring
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {currentlyExploring.map((item) => (
+          <div class="p-4 rounded-lg bg-gradient-to-br from-ctp-surface0/50 to-ctp-surface0/20 border border-ctp-surface1 hover:border-ctp-lavender transition-all hover:shadow-lg">
+            <h3 class="text-ctp-lavender font-medium mb-2 flex items-center gap-2">
+              <span class="text-ctp-green">▸</span>
+              {item.area}
+            </h3>
+            <p class="text-ctp-subtext0 text-sm">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
 
     <!-- Philosophy Section -->
     <section class="mb-12">
@@ -160,12 +289,32 @@ const strengths = ['Achiever', 'Command', 'Focus', 'Futuristic', 'Woo'];
                 ))}
               </ul>
             )}
+            {exp.projects && exp.projects.length > 0 && (
+              <div class="mt-4 pt-3 border-t border-ctp-surface1">
+                <p class="text-ctp-overlay1 text-xs mb-2">Related Projects:</p>
+                <div class="flex flex-wrap gap-2">
+                  {exp.projects.slice(0, 5).map((project) => (
+                    <a 
+                      href={`/projects/${project.slug}`}
+                      class="text-xs px-2 py-1 rounded bg-ctp-surface1 text-ctp-lavender hover:bg-ctp-surface2 hover:text-ctp-text transition-colors"
+                    >
+                      {project.title}
+                    </a>
+                  ))}
+                  {exp.projects.length > 5 && (
+                    <a 
+                      href="/projects"
+                      class="text-xs px-2 py-1 rounded bg-ctp-surface1 text-ctp-overlay0 hover:bg-ctp-surface2 transition-colors"
+                    >
+                      +{exp.projects.length - 5} more
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
-      <p class="text-ctp-subtext0 text-sm mt-4 italic">
-        See <a href="/projects" class="text-ctp-lavender hover:underline">Projects</a> for detailed case studies of my work.
-      </p>
     </section>
 
     <!-- Startups -->
@@ -188,6 +337,36 @@ const strengths = ['Achiever', 'Command', 'Focus', 'Futuristic', 'Woo'];
           </div>
         ))}
       </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="mb-12">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        What People Say
+      </h2>
+      <div class="grid grid-cols-1 gap-4">
+        {testimonials.map((testimonial) => (
+          <div class="p-5 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1 hover:border-ctp-surface2 transition-colors relative">
+            <span class="absolute -top-3 left-4 text-4xl text-ctp-surface2 font-serif">"</span>
+            <blockquote class="text-ctp-subtext1 text-sm md:text-base italic leading-relaxed mb-3 pl-4">
+              {testimonial.quote}
+            </blockquote>
+            <div class="flex items-center gap-2 pl-4">
+              <div class="w-8 h-8 rounded-full bg-ctp-surface1 flex items-center justify-center text-ctp-overlay0 text-xs">
+                {testimonial.author.split(' ').map(n => n[0]).join('')}
+              </div>
+              <div>
+                <p class="text-ctp-text text-sm font-medium">{testimonial.author}</p>
+                <p class="text-ctp-overlay0 text-xs">{testimonial.company}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-ctp-overlay0 text-xs mt-4 text-center italic">
+        Connect on <a href="https://linkedin.com/in/bradash" class="text-ctp-blue hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn</a> to see full recommendations
+      </p>
     </section>
 
     <!-- Skills -->
