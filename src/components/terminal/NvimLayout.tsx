@@ -125,7 +125,7 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
         path: '/about.md',
         content: { 
           data: { 
-            title: 'Brad Ash', 
+            title: 'About Me', 
             role: 'VP of Engineering',
             company: '20+ Years Experience',
             tech: ['TypeScript', 'Python', 'Go', 'React', 'Node.js', 'AWS', 'GCP', 'Kubernetes', 'Terraform'],
