@@ -2,18 +2,88 @@
 import Layout from '../layouts/Layout.astro';
 
 const experience = [
-  { company: 'Wpromote', role: 'VP of Engineering', period: '2023 - Present' },
-  { company: 'Capitol Information Group', role: 'VP/Director of Engineering', period: '2018 - 2023' },
+  {
+    company: 'Wpromote',
+    role: 'VP of Engineering',
+    period: '04/2024 - Present',
+    highlights: [
+      'Spearheaded evolution of Polaris platform into client-facing SaaS; achieved GA on schedule with 87% client adoption and 2x NPS targets',
+      'Scaled engineering from 12 to 29, restructured into high-velocity squads; increased throughput 50% while achieving top eNPS (71)',
+      'Executed FinOps overhaul: 20% infrastructure cost reduction, $400k/yr SaaS savings, $2.5M+ CapEx unlocked',
+      'Improved data freshness 400% (24h to 5h latency), reduced production incidents 32% and bugs 17%',
+      'Led technical alliances with Google, Meta, TikTok securing $550k partner funding for AI-driven features',
+    ],
+  },
+  {
+    company: 'lululemon',
+    role: 'Technology Director, Cloud Platform',
+    period: '02/2023 - 04/2024',
+    highlights: [
+      'Managed global team of 6 managers and 30 senior ICs delivering enterprise cloud platforms',
+      'Delivered $6M FinOps savings in first 6 months (2x OKR) through cleanup and right-sizing',
+      'Provided vision for best-in-class AWS/Azure platform services for $10B global retailer',
+      'Drove compliance initiatives: SOC 2, PCI, CIS, and enterprise engineering RFCs',
+    ],
+  },
+  {
+    company: 'Capitol Information Group',
+    role: 'Chief Technology Officer',
+    period: '03/2020 - 02/2023',
+    highlights: [
+      'Drove innovation for 5 publishing companies (2M subscribers, $50M revenue)',
+      'Led M&A due diligence, identifying data insights that paid off acquisition debt a year early',
+      'Migrated high-traffic services to AWS/GCP with federated data lakehouse architecture',
+    ],
+  },
+  {
+    company: 'Capitol Information Group',
+    role: 'Director of Engineering',
+    period: '09/2017 - 03/2020',
+    highlights: [
+      'Increased online sales 20% annually via new upsell/cross-sell checkout flows',
+      'Doubled engineering headcount and established dedicated data engineering function',
+      'Led 5-year roadmap to deprecate legacy monoliths in favor of microservices',
+    ],
+  },
+  {
+    company: 'Capitol Information Group',
+    role: 'Software Engineer → Engineering Manager',
+    period: '05/2006 - 09/2017',
+    highlights: [
+      'Promoted through ranks based on performance, leading adoption of open-source infrastructure, SDLC automation, TDD, and custom SaaS solutions',
+    ],
+  },
+];
+
+const startups = [
+  {
+    company: 'Fruitful Fertility',
+    role: 'Co-Founder / CTO',
+    period: '11/2016 - 04/2021',
+    description: 'Built algorithmic matching engine (10k users), secured $100k pre-seed. Pivoted B2B to B2C during pandemic before exit.',
+  },
+  {
+    company: 'Baton Investing',
+    role: 'Founder / Principal Engineer',
+    period: '05/2014 - 10/2016',
+    description: 'Incubated FinTech spin-off using Lean Startup methodology; maintained positive cost-to-revenue ratios.',
+  },
 ];
 
 const certifications = [
   { name: 'AWS Solutions Architect Associate', issuer: 'Amazon Web Services', year: '2023' },
-  { name: 'AWS Cloud Practitioner', issuer: 'Amazon Web Services', year: '2023' },
   { name: 'Azure Administrator Associate', issuer: 'Microsoft', year: '2023' },
-  { name: 'Azure Fundamentals', issuer: 'Microsoft', year: '2023' },
   { name: 'Terraform Associate', issuer: 'HashiCorp', year: '2024' },
   { name: 'SnowPro Core', issuer: 'Snowflake', year: '2023' },
 ];
+
+const skills = {
+  leadership: ['FinOps', 'Distributed Teams', 'Product Development', 'M&A Due Diligence', 'Governance & Compliance', 'Agile Transformation', 'Vendor Management'],
+  cloud: ['AWS', 'Azure', 'GCP', 'Kubernetes', 'Docker', 'Terraform', 'Serverless', 'Argo CD', 'GitOps'],
+  data: ['Snowflake', 'Databricks', 'BigQuery', 'PostgreSQL', 'Redis', 'Kafka', 'Airflow', 'dbt', 'Looker'],
+  ai: ['Ray', 'MLFlow', 'Vertex AI', 'Bedrock', 'OpenAI', 'Anthropic', 'Gemini', 'Agent Frameworks'],
+  languages: ['Python', 'Go', 'TypeScript', 'Node.js', 'React', 'Java', 'PHP', 'Ruby'],
+};
 
 const values = [
   { title: 'Engineering Excellence', description: 'Building systems that scale, with clean architecture and thoughtful design.' },
@@ -21,6 +91,14 @@ const values = [
   { title: 'Strategic Thinking', description: 'Bridging technical decisions with business outcomes, seeing the bigger picture.' },
   { title: 'Pragmatic Solutions', description: 'Choosing the right tool for the job, not the newest or shiniest.' },
 ];
+
+const community = [
+  'Eagle Scout & Order of the Arrow',
+  'Ward 7 Neighborhood President',
+  'lululemon DEI Council',
+];
+
+const strengths = ['Achiever', 'Command', 'Focus', 'Futuristic', 'Woo'];
 ---
 
 <Layout title="About | Brad Ash">
@@ -33,9 +111,10 @@ const values = [
       </div>
       <h1 class="text-3xl md:text-4xl font-bold text-ctp-text mb-4">About Me</h1>
       <p class="text-ctp-subtext1 text-base md:text-lg leading-relaxed">
-        Leadership and strategic thinking are what make me invaluable, but it all begins with a 
-        deep foundation in software engineering. I've spent nearly two decades building systems, 
-        leading teams, and turning complex technical challenges into elegant solutions.
+        Strategic technology executive and solution architect with 20+ years of experience scaling engineering organizations, 
+        driving efficiency, optimizing costs, and leading digital transformation. Expert in bridging the gap between technical 
+        execution and business strategy, with a proven track record of building high-velocity, inspired cultures (eNPS 71), 
+        unlocking delivery throughput, and architecting enterprise-grade software platforms.
       </p>
     </div>
 
@@ -61,17 +140,26 @@ const values = [
         <span class="text-ctp-green font-mono text-sm">##</span>
         Experience
       </h2>
-      <div class="space-y-4">
-        {experience.map((exp, i) => (
-          <div class="flex flex-col md:flex-row md:items-start gap-2 md:gap-4 p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
-            <div class="hidden md:block flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-ctp-green"></div>
-            <div class="flex-1">
-              <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 md:gap-2">
-                <h3 class="text-ctp-text font-medium text-lg md:text-base">{exp.role}</h3>
-                <span class="text-ctp-subtext0 text-sm font-mono">{exp.period}</span>
+      <div class="space-y-6">
+        {experience.map((exp) => (
+          <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+            <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 md:gap-2 mb-2">
+              <div>
+                <h3 class="text-ctp-text font-medium text-lg">{exp.role}</h3>
+                <p class="text-ctp-blue">{exp.company}</p>
               </div>
-              <p class="text-ctp-blue">{exp.company}</p>
+              <span class="text-ctp-subtext0 text-sm font-mono">{exp.period}</span>
             </div>
+            {exp.highlights && (
+              <ul class="mt-3 space-y-1">
+                {exp.highlights.map((highlight) => (
+                  <li class="text-ctp-subtext0 text-sm flex gap-2">
+                    <span class="text-ctp-green shrink-0">▪</span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </div>
@@ -80,13 +168,85 @@ const values = [
       </p>
     </section>
 
+    <!-- Startups -->
+    <section class="mb-12">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        Startups
+      </h2>
+      <div class="space-y-4">
+        {startups.map((startup) => (
+          <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+            <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 md:gap-2 mb-2">
+              <div>
+                <h3 class="text-ctp-text font-medium">{startup.role}</h3>
+                <p class="text-ctp-blue">{startup.company}</p>
+              </div>
+              <span class="text-ctp-subtext0 text-sm font-mono">{startup.period}</span>
+            </div>
+            <p class="text-ctp-subtext0 text-sm">{startup.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-12">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        Skills & Technologies
+      </h2>
+      <div class="space-y-4">
+        <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+          <h3 class="text-ctp-peach font-medium text-sm mb-2">Strategic Leadership</h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.leadership.map((skill) => (
+              <span class="px-2 py-1 text-xs rounded bg-ctp-surface1 text-ctp-text">{skill}</span>
+            ))}
+          </div>
+        </div>
+        <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+          <h3 class="text-ctp-peach font-medium text-sm mb-2">Cloud & Infrastructure</h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.cloud.map((skill) => (
+              <span class="px-2 py-1 text-xs rounded bg-ctp-surface1 text-ctp-text">{skill}</span>
+            ))}
+          </div>
+        </div>
+        <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+          <h3 class="text-ctp-peach font-medium text-sm mb-2">Data & Analytics</h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.data.map((skill) => (
+              <span class="px-2 py-1 text-xs rounded bg-ctp-surface1 text-ctp-text">{skill}</span>
+            ))}
+          </div>
+        </div>
+        <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+          <h3 class="text-ctp-peach font-medium text-sm mb-2">AI & ML</h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.ai.map((skill) => (
+              <span class="px-2 py-1 text-xs rounded bg-ctp-surface1 text-ctp-text">{skill}</span>
+            ))}
+          </div>
+        </div>
+        <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+          <h3 class="text-ctp-peach font-medium text-sm mb-2">Languages & Frameworks</h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.languages.map((skill) => (
+              <span class="px-2 py-1 text-xs rounded bg-ctp-surface1 text-ctp-text">{skill}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Certifications -->
     <section class="mb-12">
       <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
         <span class="text-ctp-green font-mono text-sm">##</span>
         Certifications
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {certifications.map((cert) => (
           <div class="p-3 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1 hover:border-ctp-surface2 transition-colors">
             <p class="text-ctp-text text-sm font-medium">{cert.name}</p>
@@ -103,8 +263,32 @@ const values = [
         Education
       </h2>
       <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
-        <h3 class="text-ctp-text font-medium">Rensselaer Polytechnic Institute</h3>
-        <p class="text-ctp-subtext0 text-sm">Troy, NY · 2002 - 2006</p>
+        <h3 class="text-ctp-text font-medium">B.S. Computer Science + UI</h3>
+        <p class="text-ctp-blue">Rensselaer Polytechnic Institute</p>
+        <p class="text-ctp-subtext0 text-sm">Troy, NY</p>
+      </div>
+    </section>
+
+    <!-- Community & Profile -->
+    <section class="mb-12">
+      <h2 class="text-xl md:text-2xl font-semibold text-ctp-mauve mb-6 flex items-center gap-2">
+        <span class="text-ctp-green font-mono text-sm">##</span>
+        Community & Leadership
+      </h2>
+      <div class="p-4 rounded-lg bg-ctp-surface0/30 border border-ctp-surface1">
+        <div class="flex flex-wrap gap-2 mb-4">
+          {community.map((item) => (
+            <span class="px-2 py-1 text-xs rounded bg-ctp-surface1 text-ctp-text">{item}</span>
+          ))}
+        </div>
+        <div>
+          <p class="text-ctp-subtext0 text-sm mb-1">StrengthsFinder:</p>
+          <div class="flex flex-wrap gap-2">
+            {strengths.map((strength) => (
+              <span class="px-2 py-1 text-xs rounded bg-ctp-mauve/20 text-ctp-mauve">{strength}</span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
 
@@ -113,7 +297,7 @@ const values = [
       <p class="text-ctp-subtext1 mb-4">Interested in working together?</p>
       <div class="flex justify-center gap-4">
         <a 
-          href="mailto:brad@bradash.dev" 
+          href="mailto:bradley.ash@gmail.com" 
           class="px-4 py-2 rounded-lg bg-ctp-blue text-ctp-base font-medium hover:bg-ctp-sapphire transition-colors"
         >
           Get in Touch
