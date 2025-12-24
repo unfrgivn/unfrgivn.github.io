@@ -443,7 +443,7 @@ Currently exploring:
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [mode, activePane, fileTree, selectedFileId, command, isSearching, searchQuery, lastKey, lastEscTime]);
+  }, [mode, activePane, fileTree, selectedFileId, command, isSearching, searchQuery, lastKey, lastEscTime, showHelp]);
 
   const hasMatch = (nodes: FileNode[], query: string): boolean => {
     return nodes.some(n => 
