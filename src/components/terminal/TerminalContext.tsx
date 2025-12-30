@@ -207,9 +207,7 @@ Type 'projects' to see my work or 'contact' for ways to reach me.`,
 │  CONTACT                                                    │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  GitHub    https://github.com/unfrgivn                      │
-│  Email     brad.ash@example.com                             │
-│  LinkedIn  linkedin.com/in/bradash                          │
+│  Resume    /brad_ash_resume.pdf                             │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘`,
         });

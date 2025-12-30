@@ -227,9 +227,6 @@ Developed social investing platform connecting novice investors with mentors. Bu
 
 ## Get In Touch
 
-- **Email:** brad@unfrgivn.com
-- **GitHub:** [github.com/unfrgivn](https://github.com/unfrgivn)
-- **LinkedIn:** [linkedin.com/in/bradash](https://linkedin.com/in/bradash)
 - **Resume:** [Download PDF](/brad_ash_resume.pdf)`
         }
       },
@@ -247,9 +244,7 @@ Developed social investing platform connecting novice investors with mentors. Bu
           },
           body: `## Get In Touch
 
-- **Email:** brad@yourmail.com
-- **GitHub:** [github.com/unfrgivn](https://github.com/unfrgivn)
-- **LinkedIn:** [linkedin.com/in/bradash](https://linkedin.com/in/bradash)
+- **Resume:** [Download PDF](/brad_ash_resume.pdf)
 
 ---
 
