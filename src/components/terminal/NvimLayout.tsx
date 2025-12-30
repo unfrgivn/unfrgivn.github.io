@@ -227,23 +227,8 @@ Developed social investing platform connecting novice investors with mentors. Bu
 
 ## Get In Touch
 
-- **Resume:** [Download PDF](/brad_ash_resume.pdf)`
-        }
-      },
-      {
-        id: 'root-contact',
-        name: 'contact.md',
-        type: 'file',
-        path: '/contact.md',
-        content: {
-          data: {
-            title: 'Contact',
-            role: 'Let\'s Connect',
-            summary: 'Open to new opportunities and collaborations',
-            icon: ''
-          },
-          body: `## Get In Touch
-
+- **GitHub:** [github.com/unfrgivn](https://github.com/unfrgivn)
+- **LinkedIn:** [linkedin.com/in/bradash](https://linkedin.com/in/bradash)
 - **Resume:** [Download PDF](/brad_ash_resume.pdf)
 
 ---

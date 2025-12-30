@@ -1,4 +1,6 @@
 ---
+import { Github } from 'lucide-react';
+
 const navItems = [
   { label: 'Projects', href: '/projects' },
   // { label: 'About', href: '/about' },
@@ -20,7 +22,9 @@ const navItems = [
       ))}
       
       <div class="flex items-center gap-4 border-l border-border/40 pl-6">
-        {/* Add socials here if needed */}
+        <a href="https://github.com/unfrgivn" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-text transition-colors" aria-label="GitHub">
+          <Github className="h-4 w-4" />
+        </a>
       </div>
     </nav>
 
