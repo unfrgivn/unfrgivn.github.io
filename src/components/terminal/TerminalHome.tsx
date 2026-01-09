@@ -81,7 +81,7 @@ const SOCIAL_LINKS = [
   { name: 'GitHub', url: 'https://github.com/unfrgivn', icon: '󰊤', color: 'text-ctp-text' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/bradash', icon: '󰌻', color: 'text-ctp-blue' },
   { name: 'Resume', url: '/brad_ash_resume.pdf', icon: '󰈙', color: 'text-ctp-peach' },
-  { name: 'About Me', url: '/projects#about', icon: '󰀄', color: 'text-ctp-lavender' },
+  // { name: 'About Me', url: '/projects#about', icon: '󰀄', color: 'text-ctp-lavender' }, // temporarily hidden
 ];
 
 export default function TerminalHome({ processes }: TerminalHomeProps) {

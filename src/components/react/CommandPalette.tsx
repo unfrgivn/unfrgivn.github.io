@@ -12,7 +12,7 @@ interface CommandItem {
 
 const STATIC_COMMANDS: CommandItem[] = [
   { id: 'home', title: 'Home', category: 'page', href: '/', icon: '🏠' },
-  { id: 'about', title: 'About', category: 'page', href: '/projects#about', icon: '👤' },
+  // { id: 'about', title: 'About', category: 'page', href: '/projects#about', icon: '👤' }, // temporarily hidden
   { id: 'projects', title: 'Projects', category: 'page', href: '/projects', icon: '📁' },
 ];
 
