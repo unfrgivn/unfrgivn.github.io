@@ -4,11 +4,15 @@ import Layout from '../../layouts/Layout.astro';
 import NvimLayout from '../../components/terminal/NvimLayout';
 
 const projects = await getCollection('projects');
-const sortedProjects = projects;
+const sortedProjects = projects.sort((a, b) =>
+  b.data.priority - a.data.priority
+    || a.data.title.localeCompare(b.data.title)
+    || a.id.localeCompare(b.id)
+);
 
 const projectsData = sortedProjects.map(p => ({
-  slug: p.slug,
-  name: p.slug,
+  slug: p.id,
+  name: p.id,
   data: p.data,
   body: p.body
 }));

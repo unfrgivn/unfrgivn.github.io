@@ -17,11 +17,17 @@ interface Props {
 const { title, description = "Portfolio of a Senior Software Engineer specializing in Platform Engineering and Distributed Systems.", fullscreen = false } = Astro.props;
 
 const projects = await getCollection('projects');
-const projectData = projects.map(p => ({
-  slug: p.slug,
-  title: p.data.title,
-  company: p.data.company,
-}));
+const projectData = projects
+  .sort((a, b) =>
+    b.data.priority - a.data.priority
+      || a.data.title.localeCompare(b.data.title)
+      || a.id.localeCompare(b.id)
+  )
+  .map(p => ({
+    slug: p.id,
+    title: p.data.title,
+    company: p.data.company,
+  }));
 ---
 
 <!doctype html>

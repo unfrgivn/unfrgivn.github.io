@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { ArrowLeft, Calendar, Building, Briefcase, Tag } from 'lucide-react';
@@ -7,7 +7,7 @@ import { ArrowLeft, Calendar, Building, Briefcase, Tag } from 'lucide-react';
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects.map((project) => ({
-    params: { slug: project.slug },
+    params: { slug: project.id },
     props: { project },
   }));
 }
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { Content } = await project.render();
+const { Content } = await render(project);
 
 const { title, summary, role, company, year, tech, domains, highlights, metrics } = project.data;
 ---
