@@ -1,0 +1,9 @@
+---
+command: "Scaled engineering org from 3 to 35+ across 6 Scrum teams"
+pid: 2050
+priority: 0
+state: "S"
+time: "4y"
+company: "Capitol Information Group"
+order: 11
+---

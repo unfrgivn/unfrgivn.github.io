@@ -1,0 +1,10 @@
+---
+command: "Shipped cross-platform messenger with real-time sync to 50K+ users"
+pid: 2055
+priority: 0
+state: "S"
+time: "1y6m"
+company: "Capitol Information Group"
+order: 16
+projectSlug: "messenger-app"
+---

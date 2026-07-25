@@ -1,0 +1,10 @@
+---
+command: "Built shared dev toolkit adopted by 6 product teams, 35+ engineers"
+pid: 2057
+priority: 0
+state: "S"
+time: "1y"
+company: "Capitol Information Group"
+order: 18
+projectSlug: "shared-development-toolkit"
+---

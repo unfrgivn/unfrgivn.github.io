@@ -638,14 +638,21 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
                     <span className="text-ctp-overlay1 mr-2 font-light">#</span>
                     {activeFile.content.data?.title || activeFile.name}
                   </h1>
-                  {activeFile.content.data?.role && (
+                  {(activeFile.content.data?.role || activeFile.content.data?.company || activeFile.content.data?.year) && (
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-ctp-subtext0 mt-2 text-sm">
-                      <span className="flex items-center gap-1">
-                        <span className="text-ctp-blue">@</span> {activeFile.content.data.role}
-                      </span>
+                      {activeFile.content.data.role && (
+                        <span className="flex items-center gap-1">
+                          <span className="text-ctp-blue">@</span> {activeFile.content.data.role}
+                        </span>
+                      )}
                       {activeFile.content.data.company && (
                         <span className="flex items-center gap-1">
                           <span className="text-ctp-peach">🏢</span> {activeFile.content.data.company}
+                        </span>
+                      )}
+                      {activeFile.content.data.year && (
+                        <span className="flex items-center gap-1">
+                          <span className="text-ctp-green">when:</span> {activeFile.content.data.year}
                         </span>
                       )}
                     </div>
@@ -783,6 +790,13 @@ export default function NvimLayout({ projects }: NvimLayoutProps) {
           )}
 
           <div className="flex items-center">
+            <button
+              type="button"
+              onClick={() => setShowHelp(true)}
+              className="px-3 items-center text-ctp-subtext0 bg-ctp-surface0 h-full hidden sm:flex hover:text-ctp-green"
+            >
+              ? for help
+            </button>
             <div className="px-3 flex items-center text-ctp-subtext0 bg-ctp-surface1 h-full hidden sm:flex">
               markdown
             </div>

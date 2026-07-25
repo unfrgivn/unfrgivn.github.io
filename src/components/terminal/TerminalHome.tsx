@@ -77,6 +77,14 @@ const CERTIFICATIONS = [
   { name: 'SnowPro Core', color: 'text-ctp-teal' },
 ];
 
+const CAREER_TRAJECTORY = [
+  { year: "'10", impact: 'h-[22%]', scale: 'h-[14%]' },
+  { year: "'14", impact: 'h-[36%]', scale: 'h-[28%]' },
+  { year: "'18", impact: 'h-[52%]', scale: 'h-[46%]' },
+  { year: "'22", impact: 'h-[74%]', scale: 'h-[68%]' },
+  { year: "'26", impact: 'h-[92%]', scale: 'h-full' },
+];
+
 const SOCIAL_LINKS = [
   { name: 'GitHub', url: 'https://github.com/unfrgivn', icon: '󰊤', color: 'text-ctp-text' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/bradash', icon: '󰌻', color: 'text-ctp-blue' },
@@ -234,42 +242,54 @@ export default function TerminalHome({ processes }: TerminalHomeProps) {
                 <span className="text-xs text-ctp-subtext0 hidden sm:inline">load average: 2.15, 1.85, 1.42</span>
               </div>
               
-              <div className="flex flex-col gap-2">
-                <div className="flex justify-between text-xs font-bold uppercase text-ctp-overlay1">
-                  <span>Career Velocity</span>
-                  <div className="flex gap-3">
-                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-ctp-green rounded-full"></span>Impact</span>
-                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 bg-ctp-blue rounded-full"></span>Prod</span>
-                  </div>
-                </div>
-                
-                <div className="h-24 flex items-end justify-between gap-1 sm:gap-2 px-1 border-b border-ctp-surface1 border-l border-ctp-surface1 bg-ctp-surface0/20 pt-4 pb-0 relative">
-                  <div className="absolute inset-0 flex flex-col justify-between opacity-10 pointer-events-none p-1">
-                    <div className="w-full h-px bg-ctp-text"></div>
-                    <div className="w-full h-px bg-ctp-text"></div>
-                    <div className="w-full h-px bg-ctp-text"></div>
+              <figure className="flex flex-col gap-2" aria-labelledby="impact-scale-heading">
+                <figcaption className="flex items-center justify-between gap-3 text-xs font-bold uppercase text-ctp-overlay1">
+                  <span id="impact-scale-heading">Impact &amp;&amp; Scale</span>
+                  <span className="text-right text-[9px] font-normal normal-case text-ctp-overlay0 sm:text-[10px]">
+                    directionally accurate™
+                  </span>
+                </figcaption>
+
+                <div className="relative h-24 border-b border-l border-ctp-surface1 bg-ctp-surface0/20">
+                  <div className="absolute right-2 top-1 z-10 flex gap-3 text-[9px] font-bold uppercase text-ctp-overlay1">
+                    <span className="flex items-center gap-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-ctp-green"></span>
+                      Impact
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-ctp-blue"></span>
+                      Scale
+                    </span>
                   </div>
 
-                  {[
-                    { y: "'10", i: 20, p: 30 },
-                    { y: "'12", i: 30, p: 40 },
-                    { y: "'14", i: 45, p: 50 },
-                    { y: "'16", i: 50, p: 55 },
-                    { y: "'18", i: 65, p: 60 },
-                    { y: "'20", i: 75, p: 70 },
-                    { y: "'22", i: 85, p: 85 },
-                    { y: "'24", i: 95, p: 98 },
-                  ].map((d) => (
-                    <div key={d.y} className="flex flex-col items-center gap-0.5 flex-1 group">
-                      <div className="w-full max-w-[12px] sm:max-w-[16px] flex items-end justify-center gap-[1px] h-full">
-                        <div style={{ height: `${d.i}%` }} className="w-1.5 sm:w-2 bg-ctp-green opacity-80 group-hover:opacity-100 transition-all rounded-t-sm"></div>
-                        <div style={{ height: `${d.p}%` }} className="w-1.5 sm:w-2 bg-ctp-blue opacity-80 group-hover:opacity-100 transition-all rounded-t-sm"></div>
+                  <span className="absolute left-1 top-1 text-[8px] uppercase text-ctp-overlay0">more ↑</span>
+
+                  <div
+                    className="absolute inset-x-3 bottom-5 top-6 grid grid-cols-5 gap-2 border-b border-ctp-surface1 px-1"
+                    role="img"
+                    aria-label="Impact and scale increase from 2010 through 2026. The trend is illustrative, not a quantitative scale."
+                  >
+                    {CAREER_TRAJECTORY.map((point) => (
+                      <div key={point.year} className="flex h-full items-end justify-center gap-1">
+                        <span
+                          className={`w-2 min-h-1 bg-ctp-green sm:w-3 ${point.impact}`}
+                          aria-hidden="true"
+                        ></span>
+                        <span
+                          className={`w-2 min-h-1 bg-ctp-blue sm:w-3 ${point.scale}`}
+                          aria-hidden="true"
+                        ></span>
                       </div>
-                      <span className="text-[9px] sm:text-[10px] text-ctp-overlay0 mt-1">{d.y}</span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+
+                  <div className="absolute inset-x-3 bottom-1 grid grid-cols-5 text-center text-[9px] text-ctp-overlay0 sm:text-[10px]">
+                    {CAREER_TRAJECTORY.map((point) => (
+                      <span key={point.year}>{point.year}</span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </figure>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
                 {SKILLS.map((skill) => (

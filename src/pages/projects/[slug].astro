@@ -19,7 +19,7 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await project.render();
 
-const { title, summary, role, company, tech, domains, highlights, metrics, media } = project.data;
+const { title, summary, role, company, year, tech, domains, highlights, metrics } = project.data;
 ---
 
 <Layout title={`${title} | Projects`} description={summary}>
@@ -54,19 +54,31 @@ const { title, summary, role, company, tech, domains, highlights, metrics, media
         </p>
 
         {/* Metadata Grid */}
-        <div class="grid grid-cols-1 gap-6 rounded-2xl border border-border bg-surface-1 p-6 md:grid-cols-3">
-          <div class="flex flex-col gap-1">
-            <span class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-faint">
-              <Building className="h-3 w-3" /> Company
-            </span>
-            <span class="font-medium text-text">{company}</span>
-          </div>
-          <div class="flex flex-col gap-1">
-            <span class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-faint">
-              <Briefcase className="h-3 w-3" /> Role
-            </span>
-            <span class="font-medium text-text">{role}</span>
-          </div>
+        <div class="grid grid-cols-1 gap-6 rounded-2xl border border-border bg-surface-1 p-6 sm:grid-cols-2 lg:grid-cols-4">
+          {company && (
+            <div class="flex flex-col gap-1">
+              <span class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-faint">
+                <Building className="h-3 w-3" /> Company
+              </span>
+              <span class="font-medium text-text">{company}</span>
+            </div>
+          )}
+          {role && (
+            <div class="flex flex-col gap-1">
+              <span class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-faint">
+                <Briefcase className="h-3 w-3" /> Role
+              </span>
+              <span class="font-medium text-text">{role}</span>
+            </div>
+          )}
+          {year && (
+            <div class="flex flex-col gap-1">
+              <span class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-faint">
+                <Calendar className="h-3 w-3" /> Timeframe
+              </span>
+              <span class="font-medium text-text">{year}</span>
+            </div>
+          )}
           <div class="flex flex-col gap-1">
             <span class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-faint">
               <Tag className="h-3 w-3" /> Tech Stack

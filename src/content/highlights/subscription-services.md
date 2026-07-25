@@ -1,0 +1,10 @@
+---
+command: "Architected subscription platform powering global membership program"
+pid: 2052
+priority: 0
+state: "S"
+time: "10m"
+company: "Capitol Information Group"
+order: 13
+projectSlug: "subscription-api"
+---
